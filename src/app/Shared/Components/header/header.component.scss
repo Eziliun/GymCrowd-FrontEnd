@@ -1,0 +1,219 @@
+.header {
+    .header-navbar {
+  
+      ul {
+        gap: 2.5rem;
+  
+        li {
+  
+          a {
+            text-decoration: none;
+            color: var(--black_text);
+            font-weight: 500;
+            font-weight: bold;
+            position: relative;
+  
+            &:hover {
+              color: var(--Orange-Gym);
+            }
+  
+            &::after {
+              content: '';
+              position: absolute;
+              left: 50%;
+              bottom: -5px;
+              width: 0;
+              height: 3px;
+              border-radius: 10px;
+              background-color: var(--Orange-Gym);
+              transition: width 0.5s ease, left 0.5s ease;
+            }
+  
+            &:hover::after {
+              width: 100%;
+              left: 0;
+            }
+          }
+  
+          img {
+            height: 20px;
+            width: auto;
+            transition: transform 0.3s ease;
+          }
+        }
+  
+        li:last-child {
+          margin-right: 0;
+  
+          a {
+            &:hover {
+              color: inherit;
+            }
+  
+            &::after {
+              display: none;
+            }
+          }
+  
+          .rotated {
+            transform: rotate(180deg);
+          }
+        }
+      }
+  
+      .header-infos {
+        min-width: 12rem;
+
+  
+        @keyframes fillSmooth {
+          0% {
+            transform: translate(-100%, 100%);
+          }
+          100% {
+            transform: translate(0%, 0%);
+          }
+        }
+      }
+    }
+  }
+  
+  *.active-link {
+    color: var(--Orange-Gym) !important;
+  }
+  
+  .hamburger {
+    position: relative;
+    display: block;
+    width: 40px;
+    cursor: pointer;
+    appearance: none;
+    background: none;
+    outline: none;
+    border: none;
+  }
+  
+  .hamburger .bar, .hamburger::after, .hamburger::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: black;
+    margin: 6px 0px;
+    transition: 0.4s;
+    border-radius: 30rem;
+  }
+  
+  .hamburger.is-active:before {
+    transform: rotate(-45deg) translate(-6px, 6px);
+  }
+  
+  .hamburger.is-active:after {
+    transform: rotate(45deg) translate(-6px, -6px);
+  }
+  
+  .hamburger.is-active .bar {
+    opacity: 0;
+  }
+  
+  .hamburger {
+    display: none;
+  }
+  
+  @media (max-width: 1024px) {
+    .header-navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      width: 60vw;
+      flex-direction: column-reverse;
+      justify-content: start !important;
+      align-items: start !important;
+      z-index: 1001;
+      background: var(--white_background);
+  
+      ul {
+        flex-direction: column;
+        width: 80%;
+        gap: 0 !important;
+  
+        li {
+          min-height: 3rem;
+          border-radius: 0 2rem 2rem 0;
+          display: flex;
+          align-items: center;
+  
+          &:hover {
+            background: var(--light_gray_background);
+            transition: .5s;
+          }
+  
+          a {
+            padding: .5rem 1rem;
+            width: 100%;
+            height: 100%;
+            line-height: 1rem;
+            display: flex;
+            align-items: center;
+            color: var(--Orange-Gym)
+          }
+  
+          a::after {
+            content: none !important;
+          }
+  
+          a:hover::after {
+            content: none !important;
+          }
+        }
+  
+        li:last-child {
+          a {
+            &:hover {
+              color: var(--Orange-Gym) !important;
+            }
+          }
+        }
+      }
+  
+      .header-infos {
+        flex-direction: column;
+        justify-content: start !important;
+        height: unset !important;
+        width: 100%;
+        gap: 1rem;
+        padding: 1rem 1rem 0 1rem;
+  
+        ::ng-deep .p-element {
+          width: 100%;
+        }
+      }
+    }
+  
+    .hamburger {
+      display: block;
+    }
+  }
+  
+  ::ng-deep .header-infos {
+    .p-button {
+      background: var(--Orange-Gym) !important;
+      border-color: var(--Orange-Gym) !important;
+      color: var(--white_text) !important;
+      border-color: var(--Orange-Gym) !important;
+      width: 8rem;
+      height: 2.8rem;
+      font-size: 1.2rem;
+    }
+  
+    .p-button:hover {
+      background-color: var(--white_background) !important;
+      color: var(--Orange-Gym) !important;
+      border-color: var(--Orange-Gym) !important;
+    }
+  
+    .p-button:focus {
+      box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--Orange-Gym), 0 1px 2px 0 black;
+    }
+  }
+  

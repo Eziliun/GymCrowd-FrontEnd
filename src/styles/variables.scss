@@ -1,0 +1,44 @@
+:root{
+//Cores Principais
+--Orange-Gym: #FF6000;
+
+//Cores Complementares e Neutras
+--dark_gray: #333333;
+--medium_gray: #909090;
+--light_gray: #CCCCCC;
+--white: #FFFFFF;
+
+//Background
+--white_background: #FFFFFF;
+--light_gray_background: #F7F7F7;
+
+//Fontes
+--black_text: #1b1b1b;
+--dark_gray_text:#333333;
+--dark_gray_subtext: #333333B2;
+--medium_gray_text: #909090;
+--white_text: #FFFFFF;
+
+//Gradientes
+
+.text-black-font {
+    color: var(--black_text) !important;
+}
+
+.text-white-font {
+    color: var(--white_text);
+}
+
+.text-darkgray-font {
+    color: var(--dark_gray_text) !important;
+}
+
+.text-lightgray-font {
+    color: var(--dark_gray_subtext) !important;
+}
+
+.text-orange-font {
+    color: var(--Orange-Gym) !important;
+}
+
+}

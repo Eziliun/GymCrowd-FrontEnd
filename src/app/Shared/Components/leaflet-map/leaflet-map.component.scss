@@ -1,0 +1,22 @@
+.map-container {
+    height: 400px;
+    width: 800px;
+    }
+    
+    .map-frame {
+      border: 1px solid rgb(177, 177, 177);
+      height: 100%;
+    }
+    
+    #map {
+      height: 100%;
+    }
+    
+    @media (max-width: 425px){
+  
+    .map-container {
+      height: 345px;
+      }
+  
+    
+      }

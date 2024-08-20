@@ -1,0 +1,32 @@
+<div class="dialog flex flex-column align-items-center justify-content-around h-full">
+    <img ngSrc="assets/GymCrowdLogo.svg" alt="" class="max-w-13rem" height="192" width="473"/>
+    <hr class="header-divider">
+    <h2>Log In</h2>
+    <div class="flex flex-column gap-4 w-full">
+      <div class="flex flex-column w-full gap-2">
+        <label>CNPJ <span>*</span></label>
+        <input
+          pInputText
+          placeholder="Digite seu email"
+          id="email"
+        >
+      </div>
+      <div class="flex flex-column w-full gap-2">
+        <div class="flex flex-row justify-content-between">
+          <label>Senha <span>*</span></label>
+          <a class="forgot-password" (click)="goToForgotPassword()" routerLink="">Esqueceu a senha?</a>
+        </div>
+        <p-password
+          [feedback]="false"
+          [toggleMask]="true"
+          placeholder="Digite sua senha"
+          [style]="{ width: '100%' }"
+          [inputStyle]="{ width: '100%' }"
+        />
+      </div>
+    </div>
+    <p-button label="Entrar" styleClass="w-full mt-5 mb-3" class="w-full"
+              [style]="{ backgroundColor: 'var(--Orange-Gym)' }"></p-button>
+    <p>Não possui conta? <a routerLink="/" (click)="goToSignup()">Criar</a></p>
+  </div>
+  
