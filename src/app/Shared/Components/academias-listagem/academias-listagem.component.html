@@ -1,0 +1,25 @@
+<div class="academias-container">
+    <h1>Academias</h1>
+    <div class="academias-list" style="overflow-y: auto; max-height: 400px;">
+      @for (academia of academias; track academia.nome) {
+        <div class="card">
+          <div class="card-header">
+            <h2>{{ academia.nome }}</h2>
+            <i class="pi pi-info-circle"></i>
+          </div>
+          <p-divider></p-divider>
+          <div class="card-body">
+            <div class="academia-endereço">
+              <i class="pi pi-map-marker"></i>
+              <span>{{ academia.endereco }}</span>
+            </div>
+            <div class="academia-lotacao">
+              <i class="pi pi-users"></i>
+              <span>{{ academia.percentualOcupacao }}%</span>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+  

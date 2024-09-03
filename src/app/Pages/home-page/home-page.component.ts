@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../../Shared/Components/header/header.component';
 import { LeafletMapComponent } from '../../Shared/Components/leaflet-map/leaflet-map.component';
+import { AcademiasListagemComponent } from '../../Shared/Components/academias-listagem/academias-listagem.component';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [HeaderComponent, LeafletMapComponent],
+  imports: [HeaderComponent, LeafletMapComponent, AcademiasListagemComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })
