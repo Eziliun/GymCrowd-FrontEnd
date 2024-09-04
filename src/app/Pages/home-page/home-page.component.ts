@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../../Shared/Components/header/header.component';
 import { LeafletMapComponent } from '../../Shared/Components/leaflet-map/leaflet-map.component';
-import { AcademiasListagemComponent } from '../../Shared/Components/academias-listagem/academias-listagem.component';
+import { AcademiasListagemComponent } from './components/academias-listagem/academias-listagem.component';
 
 @Component({
   selector: 'app-home-page',

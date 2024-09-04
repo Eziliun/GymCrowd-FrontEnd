@@ -50,6 +50,12 @@
     }
   }
 
+  ::ng-deep {
+    .p-inputtext {
+    width: 100% !important;
+  }
+  }
+
   @media (max-width: 425px) {
     ::ng-deep {
       .p-dialog-content {

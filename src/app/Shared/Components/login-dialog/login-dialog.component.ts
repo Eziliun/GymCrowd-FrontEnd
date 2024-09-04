@@ -8,6 +8,7 @@ import {RouterLink} from "@angular/router";
 import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 import { RegisterDialogComponent } from '../register-dialog/register-dialog.component';
+import { InputMaskModule } from 'primeng/inputmask';
 
 @Component({
   selector: 'app-login-dialog',
@@ -18,7 +19,8 @@ import { RegisterDialogComponent } from '../register-dialog/register-dialog.comp
     InputTextModule,
     NgOptimizedImage,
     PasswordModule,
-    RouterLink
+    RouterLink,
+    InputMaskModule
   ],
   templateUrl: './login-dialog.component.html',
   styleUrl: './login-dialog.component.scss'
