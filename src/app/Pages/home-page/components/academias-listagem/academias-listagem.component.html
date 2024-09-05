@@ -1,7 +1,7 @@
 <div class="academias-container">
     <h1>Academias</h1>
     <div class="academias-list" style="overflow-y: auto; max-height: 400px;">
-      @for (academia of academias; track academia.nome) {
+      @for (academia of academias; track academia.id) {
         <div class="card">
           <div class="card-header">
             <h2>{{ academia.nome }}</h2>
