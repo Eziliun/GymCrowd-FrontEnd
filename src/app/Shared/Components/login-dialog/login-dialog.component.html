@@ -1,45 +1,30 @@
 <div class="dialog flex flex-column align-items-center justify-content-around h-full">
-  <img ngSrc="assets/GymCrowdLogo.svg" alt="" class="max-w-13rem" height="192" width="473"/>
-  <hr class="header-divider">
-  <h2>Log In</h2>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-column gap-4 w-full">
-    <div class="flex flex-column w-full gap-2">
-      <label>CNPJ <span>*</span></label>
-      <p-inputMask 
-        formControlName="cnpj" 
+    <img ngSrc="assets/GymCrowdLogo.svg" alt="" class="max-w-13rem" height="192" width="473"/>
+    <hr class="header-divider">
+    <h2>Log In</h2>
+    <div class="flex flex-column gap-4 w-full">
+      <div class="flex flex-column w-full gap-2">
+        <label>CNPJ <span>*</span></label>
+        <p-inputMask 
         mask="99.999.999/9999-99" 
-        placeholder="Digite seu CNPJ" />
-      <div *ngIf="loginForm.get('cnpj')?.invalid && loginForm.get('cnpj')?.touched">
-        <small class="p-error">CNPJ inválido</small>
+        placeholder="Digite seu CPNJ" />
+      </div>
+      <div class="flex flex-column w-full gap-2">
+        <div class="flex flex-row justify-content-between">
+          <label>Senha <span>*</span></label>
+          <a class="forgot-password" (click)="goToForgotPassword()" routerLink="">Esqueceu a senha?</a>
+        </div>
+        <p-password
+          [feedback]="false"
+          [toggleMask]="true"
+          placeholder="Digite sua senha"
+          [style]="{ width: '100%' }"
+          [inputStyle]="{ width: '100%' }"
+        />
       </div>
     </div>
-    
-    <div class="flex flex-column w-full gap-2">
-      <div class="flex flex-row justify-content-between">
-        <label>Senha <span>*</span></label>
-        <a class="forgot-password" (click)="goToForgotPassword()" routerLink="">Esqueceu a senha?</a>
-      </div>
-      <p-password
-        formControlName="password"
-        [feedback]="false"
-        [toggleMask]="true"
-        placeholder="Digite sua senha"
-        [style]="{ width: '100%' }"
-        [inputStyle]="{ width: '100%' }"
-      ></p-password>
-      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-        <small class="p-error">Senha inválida (mínimo 6 caracteres)</small>
-      </div>
-    </div>
-    
-    <p-button 
-      label="Entrar" 
-      type="submit" 
-      styleClass="w-full mt-5 mb-3" 
-      [style]="{ backgroundColor: 'var(--Orange-Gym)' }"
-      [disabled]="loginForm.invalid"
-    ></p-button>
-  </form>
+    <p-button label="Entrar" styleClass="w-full mt-5 mb-3" class="w-full"
+              [style]="{ backgroundColor: 'var(--Orange-Gym)' }"></p-button>
+    <p>Não possui conta? <a routerLink="/" (click)="goToSignup()">Criar</a></p>
+  </div>
   
-  <p>Não possui conta? <a routerLink="/" (click)="goToSignup()">Criar</a></p>
-</div>
