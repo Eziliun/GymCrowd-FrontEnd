@@ -1,4 +1,5 @@
 <div class="dialog flex flex-column align-items-center justify-content-around h-full">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <img ngSrc="assets/GymCrowdLogo.svg" alt="" class="max-w-13rem" height="192" width="473"/>
     <hr class="header-divider">
     <h2>Log In</h2>
@@ -6,8 +7,10 @@
       <div class="flex flex-column w-full gap-2">
         <label>CNPJ <span>*</span></label>
         <p-inputMask 
-        mask="99.999.999/9999-99" 
-        placeholder="Digite seu CPNJ" />
+          formControlName="cnpj" 
+          mask="99.999.999/9999-99" 
+          placeholder="Digite seu CNPJ" 
+          [class.is-invalid]="loginForm.get('cnpj')?.invalid && loginForm.get('cnpj')?.touched" />
       </div>
       <div class="flex flex-column w-full gap-2">
         <div class="flex flex-row justify-content-between">
@@ -15,16 +18,18 @@
           <a class="forgot-password" (click)="goToForgotPassword()" routerLink="">Esqueceu a senha?</a>
         </div>
         <p-password
+          formControlName="password"
           [feedback]="false"
           [toggleMask]="true"
           placeholder="Digite sua senha"
           [style]="{ width: '100%' }"
           [inputStyle]="{ width: '100%' }"
+          [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
         />
       </div>
     </div>
-    <p-button label="Entrar" styleClass="w-full mt-5 mb-3" class="w-full"
+    <p-button label="Entrar" styleClass="w-full mt-5 mb-3" class="w-full" type="submit"
               [style]="{ backgroundColor: 'var(--Orange-Gym)' }"></p-button>
     <p>Não possui conta? <a routerLink="/" (click)="goToSignup()">Criar</a></p>
-  </div>
-  
+  </form>
+</div>

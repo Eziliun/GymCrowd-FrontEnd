@@ -6,9 +6,13 @@ import {NgOptimizedImage} from "@angular/common";
 import {PasswordModule} from "primeng/password";
 import {RouterLink} from "@angular/router";
 import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
-import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
-import { RegisterDialogComponent } from '../register-dialog/register-dialog.component';
-import { InputMaskModule } from 'primeng/inputmask';
+import {ForgotPasswordComponent} from '../forgot-password/forgot-password.component';
+import {RegisterDialogComponent} from '../register-dialog/register-dialog.component';
+import {InputMaskModule} from 'primeng/inputmask';
+import {ReactiveFormsModule, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import { LoginPayload } from '../../Interface/request/ILogin';
+import { LoginService } from '../../Service/Login.service';
 
 @Component({
   selector: 'app-login-dialog',
@@ -20,16 +24,41 @@ import { InputMaskModule } from 'primeng/inputmask';
     NgOptimizedImage,
     PasswordModule,
     RouterLink,
-    InputMaskModule
+    InputMaskModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   templateUrl: './login-dialog.component.html',
-  styleUrl: './login-dialog.component.scss'
+  styleUrls: ['./login-dialog.component.scss']
 })
 export class LoginDialogComponent {
   forgotPasswordDialogRef: DynamicDialogRef | undefined;
   signUpDialogRef: DynamicDialogRef | undefined;
+  
+  loginForm: FormGroup;
 
-  constructor(private dialogService: DialogService) {
+  constructor(private dialogService: DialogService, private fb: FormBuilder, private loginService: LoginService) {
+    this.loginForm = this.fb.group({
+      cnpj: ['', [Validators.required, Validators.pattern(/^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/)]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
+
+  // Função para submeter o formulário
+  onSubmit() {
+    if (this.loginForm.valid) {
+      const loginData: LoginPayload = this.loginForm.value;
+      this.loginService.login(loginData).subscribe({
+        next: (response:any) => {
+          console.log('Login com sucesso', response);
+        },
+        error: (err:any) => {
+          console.error('Erro no login', err);
+        }
+      });
+    } else {
+      console.log('Formulário inválido');
+    }
   }
 
   goToForgotPassword() {
@@ -48,7 +77,7 @@ export class LoginDialogComponent {
         'max-height': '26.8125rem',
         'margin-top': '1rem',
       }
-    })
+    });
   }
 
   goToSignup() {
@@ -68,6 +97,6 @@ export class LoginDialogComponent {
         'max-height': '58.875rem',
         'margin-top': '1rem',
       }
-    })
+    });
   }
 }
