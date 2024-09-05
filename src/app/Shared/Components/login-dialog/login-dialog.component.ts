@@ -2,13 +2,15 @@ import {Component} from '@angular/core';
 import {DialogModule} from "primeng/dialog";
 import {Button} from "primeng/button";
 import {InputTextModule} from "primeng/inputtext";
-import {NgOptimizedImage} from "@angular/common";
+import {CommonModule, NgOptimizedImage} from "@angular/common";
 import {PasswordModule} from "primeng/password";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 import { RegisterDialogComponent } from '../register-dialog/register-dialog.component';
 import { InputMaskModule } from 'primeng/inputmask';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { LoginService } from '../../Services/Login.service';
 
 @Component({
   selector: 'app-login-dialog',
@@ -20,16 +22,48 @@ import { InputMaskModule } from 'primeng/inputmask';
     NgOptimizedImage,
     PasswordModule,
     RouterLink,
-    InputMaskModule
+    InputMaskModule,
+    CommonModule,
+    ReactiveFormsModule
   ],
   templateUrl: './login-dialog.component.html',
   styleUrl: './login-dialog.component.scss'
 })
 export class LoginDialogComponent {
+  loginForm: FormGroup;
   forgotPasswordDialogRef: DynamicDialogRef | undefined;
   signUpDialogRef: DynamicDialogRef | undefined;
 
-  constructor(private dialogService: DialogService) {
+  constructor(
+    private fb: FormBuilder,
+    private dialogService: DialogService,
+    private loginService: LoginService,
+    private router: Router
+  ) {
+    this.loginForm = this.fb.group({
+      cnpj: ['', [Validators.required, Validators.pattern(/\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}/)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
+
+  onSubmit() {
+    // if (this.loginForm.valid) {
+    //   const loginData = this.loginForm.value;
+    //   this.loginService.login(loginData).subscribe(
+    //     (response: any) => {
+    //       console.log('Login bem-sucedido:', response);
+    //       this.router.navigate(['/home']);
+    //     },
+    //     (error: any) => {
+    //       console.error('Erro no login:', error);
+    //     }
+    //   );
+    // } else {
+    //   console.log('Formulário inválido');
+    // }
+
+    console.log(this.loginForm.value);
+    
   }
 
   goToForgotPassword() {
@@ -48,7 +82,7 @@ export class LoginDialogComponent {
         'max-height': '26.8125rem',
         'margin-top': '1rem',
       }
-    })
+    });
   }
 
   goToSignup() {
@@ -68,6 +102,7 @@ export class LoginDialogComponent {
         'max-height': '58.875rem',
         'margin-top': '1rem',
       }
-    })
+    });
   }
 }
+
