@@ -1,4 +1,4 @@
-<div class="dialog flex flex-column align-items-center justify-content-between h-full">
+<div class="dialog flex flex-column align-items-center justify-content-between h-full" [formGroup]="registerForm">
     <button class="close-button" (click)="closeDialog()">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
            xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -13,68 +13,48 @@
       </svg>
   
     </button>
-    <img ngSrc="assets/GymCrowdLogo.svg" alt="" class="max-w-13rem" height="192" width="473"/>
-    <hr class="header-divider">
+    <img ngSrc="assets/GymCrowdLogo.svg" alt="" class="max-w-13rem" height="192" width="473" />
+    <hr class="header-divider" />
     <h2>Cadastro</h2>
     <div class="flex flex-column gap-4 w-full">
       <div class="flex flex-column w-full gap-2">
         <label>Nome da Academia <span>*</span></label>
-        <input
-          pInputText
-          placeholder="Digite seu nome completo"
-          id="name"
-        >
+        <input pInputText placeholder="Digite seu nome completo" formControlName="name" id="name" />
+        <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched">Campo obrigatório</div>
       </div>
       <div class="flex flex-column w-full gap-2">
         <label>Email <span>*</span></label>
-        <input
-          pInputText
-          type="email"
-          placeholder="Digite seu email"
-          id="email"
-        >
+        <input pInputText type="email" placeholder="Digite seu email" formControlName="email" id="email" />
+        <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+          Insira um email válido
+        </div>
       </div>
       <div class="flex flex-column w-full gap-2">
         <label>CNPJ <span>*</span></label>
-        <input
-          pInputText
-          type="text"
-          placeholder="Digite seu CPF"
-          id="cpf"
-        >
+        <p-inputMask formControlName="cnpj" mask="99.999.999/9999-99" placeholder="Digite seu CNPJ" id="cpnj"></p-inputMask>
+        <div *ngIf="registerForm.get('cnpj')?.invalid && registerForm.get('cnpj')?.touched">Campo obrigatório</div>
       </div>
       <div class="flex flex-column w-full gap-2">
         <label>Celular <span>*</span></label>
-        <input
-          pInputText
-          type="tel"
-          placeholder="Digite seu celular"
-          id="phone"
-        >
+        <p-inputMask formControlName="phone" mask="(99)99999-9999" placeholder="Digite seu telefone" id="phone"></p-inputMask>
+        <div *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched">Campo obrigatório</div>
       </div>
       <div class="flex flex-column w-full gap-2">
         <label>Senha <span>*</span></label>
-        <p-password
-          [feedback]="false"
-          [toggleMask]="true"
-          placeholder="Digite sua senha"
-          [style]="{ width: '100%' }"
-          [inputStyle]="{ width: '100%' }"
-        />
+        <p-password [feedback]="false" [toggleMask]="true" placeholder="Digite sua senha" formControlName="password" />
+        <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+          A senha deve ter pelo menos 6 caracteres
+        </div>
       </div>
       <div class="flex flex-column w-full gap-2">
         <label>Confirmar Senha <span>*</span></label>
-        <p-password
-          [feedback]="false"
-          [toggleMask]="true"
-          placeholder="Confirme a senha"
-          [style]="{ width: '100%' }"
-          [inputStyle]="{ width: '100%' }"
-        />
+        <p-password [feedback]="false" [toggleMask]="true" placeholder="Confirme a senha" formControlName="confirmPassword" />
+        <div *ngIf="registerForm.errors && registerForm.get('confirmPassword')?.touched">
+          As senhas não coincidem
+        </div>
       </div>
     </div>
-    <p-button label="Criar" styleClass="w-full mt-5 mb-3" class="w-full"
-              [style]="{ backgroundColor: 'var(--Orange-Gym)' }"></p-button>
+    <p-button label="Criar" styleClass="w-full mt-5 mb-3" class="w-full" [style]="{ backgroundColor: 'var(--Orange-Gym)' }" (click)="onSubmit()"></p-button>
     <p>Já possui conta? <a routerLink="/" (click)="closeDialog()">Entrar</a></p>
   </div>
   
