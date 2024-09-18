@@ -20,9 +20,20 @@
     }
   }
 
+  app-academias-listagem {
+    min-width: 340px;
+  }
+
   @media (max-width: 1250px) {
     .content-wrapper {
         flex-direction: column-reverse !important;
     }
+  }
+
+  @media (max-width: 425px) {
+    app-academias-listagem {
+      min-width: 210px;
+    }
+  
   }
   
