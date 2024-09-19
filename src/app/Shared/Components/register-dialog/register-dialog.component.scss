@@ -1,0 +1,58 @@
+::ng-deep .p-dialog-mask {
+    overflow: auto;
+  }
+  
+  button.close-button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    width: 2.375rem;
+    height: 2.375rem;
+    outline: none;
+    top: 2rem;
+    right: 0.5rem;
+    position: absolute;
+    padding: 0;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    color: var(--dark_gray_text);
+    margin-bottom: 2rem;
+  }
+  
+  a.forgot-password {
+    font-size: 0.875rem;
+    color: var(--Orange-Gym);
+  }
+  
+  .dialog img {
+    width: 13.75rem;
+    height: auto;
+  }
+  
+  hr {
+    width: 100%;
+    margin: 1rem 0;
+  }
+  
+  label span {
+    color: rgba(255, 0, 0, .75);
+  }
+  
+  ::ng-deep {
+    .p-button:hover {
+      background-color: var(--white_background) !important;
+      color: var(--Orange-Gym) !important;
+      border-color: var(--Orange-Gym) !important;
+    }
+  
+    .p-button:focus {
+      box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--Orange-Gym), 0 1px 2px 0 black;
+    }
+
+    .p-password {
+      width: 100% !important;
+    }
+  }
+  

@@ -1,0 +1,26 @@
+<header class="header flex align-items-center justify-content-between w-full h-full gap-5 py-3">
+    <div class="header-logo max-w-8rem md:max-w-12rem">
+      <a routerLink="/home">
+        <img ngSrc="assets/GymCrowdLogo.svg" alt="Logo" priority
+             class="max-w-12rem h-full w-full" height="192" width="473">
+      </a>
+    </div>
+    <nav class="header-navbar align-items-center justify-content-between h-full gap-5"
+         [ngClass]="innerWidth <= 1024 && !isMenuActive ? 'hidden' : 'flex'">
+      <ul class="flex p-0 m-0 list-none">
+        <li>
+          <a routerLink="/home" routerLinkActive="active-link">
+            Home
+          </a>
+        </li>
+      </ul>
+  
+      <div class="header-infos flex justify-content-between align-items-center h-full">
+        <p-button label="Entrar" (click)="openLoginDialog()"/>
+      </div>
+    </nav>
+    <button class="hamburger" (click)="toggleMenu()" [class.is-active]="isMenuActive">
+      <div class="bar"></div>
+    </button>
+  </header>
+  

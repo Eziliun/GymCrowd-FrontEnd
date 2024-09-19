@@ -1,0 +1,60 @@
+<div class="dialog flex flex-column align-items-center justify-content-between h-full" [formGroup]="registerForm">
+    <button class="close-button" (click)="closeDialog()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+           xmlns:xlink="http://www.w3.org/1999/xlink">
+        <rect width="24" height="24" fill="url(#pattern0_218_1170)"/>
+        <defs>
+          <pattern id="pattern0_218_1170" patternContentUnits="objectBoundingBox" width="1" height="1">
+            <use xlink:href="#image0_218_1170" transform="scale(0.0078125)"/>
+          </pattern>
+          <image id="image0_218_1170" width="128" height="128"
+                 xlink:href="data:image/png;base64,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"/>
+        </defs>
+      </svg>
+  
+    </button>
+    <img ngSrc="assets/GymCrowdLogo.svg" alt="" class="max-w-13rem" height="192" width="473" />
+    <hr class="header-divider" />
+    <h2>Cadastro</h2>
+    <div class="flex flex-column gap-4 w-full">
+      <div class="flex flex-column w-full gap-2">
+        <label>Nome da Academia <span>*</span></label>
+        <input pInputText placeholder="Digite seu nome completo" formControlName="name" id="name" />
+        <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched">Campo obrigatório</div>
+      </div>
+      <div class="flex flex-column w-full gap-2">
+        <label>Email <span>*</span></label>
+        <input pInputText type="email" placeholder="Digite seu email" formControlName="email" id="email" />
+        <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+          Insira um email válido
+        </div>
+      </div>
+      <div class="flex flex-column w-full gap-2">
+        <label>CNPJ <span>*</span></label>
+        <p-inputMask formControlName="cnpj" mask="99.999.999/9999-99" placeholder="Digite seu CNPJ" id="cpnj"></p-inputMask>
+        <div *ngIf="registerForm.get('cnpj')?.invalid && registerForm.get('cnpj')?.touched">Campo obrigatório</div>
+      </div>
+      <div class="flex flex-column w-full gap-2">
+        <label>Celular <span>*</span></label>
+        <p-inputMask formControlName="phone" mask="(99)99999-9999" placeholder="Digite seu telefone" id="phone"></p-inputMask>
+        <div *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched">Campo obrigatório</div>
+      </div>
+      <div class="flex flex-column w-full gap-2">
+        <label>Senha <span>*</span></label>
+        <p-password [feedback]="false" [toggleMask]="true" placeholder="Digite sua senha" formControlName="password" />
+        <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+          A senha deve ter pelo menos 6 caracteres
+        </div>
+      </div>
+      <div class="flex flex-column w-full gap-2">
+        <label>Confirmar Senha <span>*</span></label>
+        <p-password [feedback]="false" [toggleMask]="true" placeholder="Confirme a senha" formControlName="confirmPassword" />
+        <div *ngIf="registerForm.errors && registerForm.get('confirmPassword')?.touched">
+          As senhas não coincidem
+        </div>
+      </div>
+    </div>
+    <p-button label="Criar" styleClass="w-full mt-5 mb-3" class="w-full" [style]="{ backgroundColor: 'var(--Orange-Gym)' }" (click)="onSubmit()"></p-button>
+    <p>Já possui conta? <a routerLink="/" (click)="closeDialog()">Entrar</a></p>
+  </div>
+  
