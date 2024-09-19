@@ -8,6 +8,8 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { InputMaskModule } from 'primeng/inputmask';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import { RegisterService } from '../../Service/register.service';
+import { ToastService } from '../../Service/Toast.service';
 
 @Component({
   selector: 'app-register-dialog',
@@ -24,12 +26,17 @@ import { PasswordModule } from 'primeng/password';
     CommonModule
   ],
   templateUrl: './register-dialog.component.html',
-  styleUrl: './register-dialog.component.scss'
+  styleUrls: ['./register-dialog.component.scss'] 
 })
 export class RegisterDialogComponent {
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private dialogRef: DynamicDialogRef) {
+  constructor(
+    private fb: FormBuilder,
+    private dialogRef: DynamicDialogRef,
+    private registerService: RegisterService,
+    private toastService: ToastService,
+  ) {
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -52,7 +59,18 @@ export class RegisterDialogComponent {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      console.log('Form Submitted', this.registerForm.value);
+      const payload = this.registerForm.value;
+      this.registerService.register(payload).subscribe({
+        next: (response: any) => {
+          this.toastService.showSuccess('Operação realizada com sucesso!');
+          console.log('Registration successful', response);
+          this.closeDialog();
+        },
+        error: (error: any) => {
+          this.toastService.showError('Erro ao registrar o usuário');
+          console.error('Registration failed', error);
+        }
+      });
     } else {
       console.log('Form is invalid');
     }

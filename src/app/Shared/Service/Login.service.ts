@@ -2,18 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { LoginPayload } from '../Interface/request/ILogin';
+import { environment } from '../../environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  private apiUrl = 'https://seu-backend-url.com/api/login'; // Altere para o endpoint real
+  private apiUrl = environment.APIROUTE;
   private tokenKey = 'authToken';
 
   constructor(private http: HttpClient) {}
 
   login(payload: LoginPayload): Observable<any> {
-    return this.http.post<any>(this.apiUrl, payload).pipe(
+    return this.http.post<any>(`${this.apiUrl}/login_acad`, payload).pipe(
       tap(response => {
         
         this.saveToken(response.token);
