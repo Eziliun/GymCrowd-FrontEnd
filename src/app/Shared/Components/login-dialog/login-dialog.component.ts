@@ -13,6 +13,7 @@ import {ReactiveFormsModule, FormBuilder, FormGroup, Validators} from '@angular/
 import {HttpClientModule} from '@angular/common/http';
 import { LoginPayload } from '../../Interface/request/ILogin';
 import { LoginService } from '../../Service/Login.service';
+import { ToastService } from '../../Service/Toast.service';
 
 @Component({
   selector: 'app-login-dialog',
@@ -37,22 +38,27 @@ export class LoginDialogComponent {
   
   loginForm: FormGroup;
 
-  constructor(private dialogService: DialogService, private fb: FormBuilder, private loginService: LoginService) {
+  constructor(private dialogService: DialogService, 
+    private fb: FormBuilder, 
+    private loginService: LoginService,
+    private toastService: ToastService
+  ) {
     this.loginForm = this.fb.group({
       cnpj: ['', [Validators.required, Validators.pattern(/^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/)]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
-  // Função para submeter o formulário
   onSubmit() {
     if (this.loginForm.valid) {
       const loginData: LoginPayload = this.loginForm.value;
       this.loginService.login(loginData).subscribe({
         next: (response:any) => {
+          this.toastService.showSuccess('Operação realizada com sucesso!');
           console.log('Login com sucesso', response);
         },
         error: (err:any) => {
+          this.toastService.showError('Ocorreu um erro no login!');
           console.error('Erro no login', err);
         }
       });
