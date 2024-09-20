@@ -6,7 +6,7 @@ import { AcademiasListagemComponent } from './components/academias-listagem/acad
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [HeaderComponent, LeafletMapComponent, AcademiasListagemComponent],
+  imports: [LeafletMapComponent, AcademiasListagemComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })
