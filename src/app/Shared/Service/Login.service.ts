@@ -31,6 +31,3 @@ export class LoginService {
   }
 
   }
-  
-
-// (`${this.apiUrl}/api/slide`)
