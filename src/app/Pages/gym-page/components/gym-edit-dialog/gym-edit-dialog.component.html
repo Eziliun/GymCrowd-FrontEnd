@@ -1,0 +1,32 @@
+<div class="academia-edit-container flex flex-column gap-4">
+    <div class="academia-edit-header flex justify-content-between align-items-center">
+      <h2>Editar Informações da Academia</h2>
+      <p-button icon="pi pi-save" label="Salvar" severity="success"></p-button>
+    </div>
+  
+    <div class="academia-edit-body flex gap-4">
+      <div class="academia-edit-form flex flex-column gap-3">
+        <div class="form-group">
+          <label for="cnpj">CNPJ</label>
+          <input id="cnpj"  pInputText placeholder="Digite o CNPJ" />
+        </div>
+  
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" pInputText placeholder="Digite o Email" />
+        </div>
+  
+        <div class="form-group">
+          <label for="lotacao">Lotação Média</label>
+          <input id="lotacao" pInputText placeholder="Digite a Lotação Média" />
+        </div>
+      </div>
+  
+      <div class="academia-sedes-container flex align-items-center gap-3">
+        <label for="sedes">Quantidade de Sedes:</label>
+        <p id="sedes">{{ quantidadeSedes }}</p>
+        <p-button icon="pi pi-plus" label="Adicionar"></p-button>
+      </div>
+    </div>
+  </div>
+  
