@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
 
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { GymEditComponentComponent } from '../../../../gym-edit.component/gym-edit.component.component';
+import { GymEditComponentComponent } from '../gym-edit.component/gym-edit.component.component';
 @Component({
   selector: 'app-gym-infos',
   standalone: true,
