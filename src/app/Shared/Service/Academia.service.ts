@@ -11,11 +11,11 @@ export class AcademiaService {
 
   constructor(private http: HttpClient) {}
 
-  getAcademia(id: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/get_academia/${id}`);
+  getAcademia(cnpj: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/get_acad/${cnpj}`);
   }
 
-  editAcademia(id: string, payload: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/edit_academia/${id}`, payload);
+  editAcademia(cnpj: string, payload: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/update_acad/${cnpj}`, payload);
   }
 }
