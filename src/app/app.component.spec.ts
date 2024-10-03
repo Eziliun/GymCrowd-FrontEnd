@@ -17,6 +17,10 @@ describe('AppComponent', () => {
   it(`should have the 'GymCrowd-FrontEnd' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
+<<<<<<< HEAD
+=======
+    expect(app.title).toEqual('GymCrowd-FrontEnd');
+>>>>>>> 3b155ec4b0422afc3b225604d56f7e23c801bc05
   });
 
   it('should render title', () => {

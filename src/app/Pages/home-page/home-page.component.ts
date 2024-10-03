@@ -6,7 +6,11 @@ import { AcademiasListagemComponent } from './components/academias-listagem/acad
 @Component({
   selector: 'app-home-page',
   standalone: true,
+<<<<<<< HEAD
   imports: [LeafletMapComponent, AcademiasListagemComponent],
+=======
+  imports: [HeaderComponent, LeafletMapComponent, AcademiasListagemComponent],
+>>>>>>> 3b155ec4b0422afc3b225604d56f7e23c801bc05
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })

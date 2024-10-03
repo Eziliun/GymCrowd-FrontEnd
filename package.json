@@ -21,7 +21,11 @@
     "leaflet": "^1.9.4",
     "primeflex": "^3.3.1",
     "primeicons": "^7.0.0",
+<<<<<<< HEAD
     "primeng": "^17.18.10",
+=======
+    "primeng": "^17.18.9",
+>>>>>>> 3b155ec4b0422afc3b225604d56f7e23c801bc05
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
@@ -39,9 +43,13 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.4.2"
+<<<<<<< HEAD
   },
   "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.4.",
   "main": "index.js",
   "author": "",
   "license": "ISC"
+=======
+  }
+>>>>>>> 3b155ec4b0422afc3b225604d56f7e23c801bc05
 }

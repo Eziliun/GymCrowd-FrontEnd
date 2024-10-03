@@ -8,8 +8,11 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { InputMaskModule } from 'primeng/inputmask';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+<<<<<<< HEAD
 import { RegisterService } from '../../Service/register.service';
 import { ToastService } from '../../Service/Toast.service';
+=======
+>>>>>>> 3b155ec4b0422afc3b225604d56f7e23c801bc05
 
 @Component({
   selector: 'app-register-dialog',
@@ -26,17 +29,25 @@ import { ToastService } from '../../Service/Toast.service';
     CommonModule
   ],
   templateUrl: './register-dialog.component.html',
+<<<<<<< HEAD
   styleUrls: ['./register-dialog.component.scss'] 
+=======
+  styleUrl: './register-dialog.component.scss'
+>>>>>>> 3b155ec4b0422afc3b225604d56f7e23c801bc05
 })
 export class RegisterDialogComponent {
   registerForm: FormGroup;
 
+<<<<<<< HEAD
   constructor(
     private fb: FormBuilder,
     private dialogRef: DynamicDialogRef,
     private registerService: RegisterService,
     private toastService: ToastService,
   ) {
+=======
+  constructor(private fb: FormBuilder, private dialogRef: DynamicDialogRef) {
+>>>>>>> 3b155ec4b0422afc3b225604d56f7e23c801bc05
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -59,6 +70,7 @@ export class RegisterDialogComponent {
 
   onSubmit() {
     if (this.registerForm.valid) {
+<<<<<<< HEAD
       const payload = this.registerForm.value;
       this.registerService.register(payload).subscribe({
         next: (response: any) => {
@@ -71,6 +83,9 @@ export class RegisterDialogComponent {
           console.error('Registration failed', error);
         }
       });
+=======
+      console.log('Form Submitted', this.registerForm.value);
+>>>>>>> 3b155ec4b0422afc3b225604d56f7e23c801bc05
     } else {
       console.log('Form is invalid');
     }

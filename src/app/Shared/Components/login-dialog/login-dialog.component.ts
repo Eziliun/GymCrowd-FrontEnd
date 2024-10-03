@@ -13,7 +13,10 @@ import {ReactiveFormsModule, FormBuilder, FormGroup, Validators} from '@angular/
 import {HttpClientModule} from '@angular/common/http';
 import { LoginPayload } from '../../Interface/request/ILogin';
 import { LoginService } from '../../Service/Login.service';
+<<<<<<< HEAD
 import { ToastService } from '../../Service/Toast.service';
+=======
+>>>>>>> 3b155ec4b0422afc3b225604d56f7e23c801bc05
 
 @Component({
   selector: 'app-login-dialog',
@@ -38,27 +41,41 @@ export class LoginDialogComponent {
   
   loginForm: FormGroup;
 
+<<<<<<< HEAD
   constructor(private dialogService: DialogService, 
     private fb: FormBuilder, 
     private loginService: LoginService,
     private toastService: ToastService
   ) {
+=======
+  constructor(private dialogService: DialogService, private fb: FormBuilder, private loginService: LoginService) {
+>>>>>>> 3b155ec4b0422afc3b225604d56f7e23c801bc05
     this.loginForm = this.fb.group({
       cnpj: ['', [Validators.required, Validators.pattern(/^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/)]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
+<<<<<<< HEAD
+=======
+  // Função para submeter o formulário
+>>>>>>> 3b155ec4b0422afc3b225604d56f7e23c801bc05
   onSubmit() {
     if (this.loginForm.valid) {
       const loginData: LoginPayload = this.loginForm.value;
       this.loginService.login(loginData).subscribe({
         next: (response:any) => {
+<<<<<<< HEAD
           this.toastService.showSuccess('Operação realizada com sucesso!');
           console.log('Login com sucesso', response);
         },
         error: (err:any) => {
           this.toastService.showError('Ocorreu um erro no login!');
+=======
+          console.log('Login com sucesso', response);
+        },
+        error: (err:any) => {
+>>>>>>> 3b155ec4b0422afc3b225604d56f7e23c801bc05
           console.error('Erro no login', err);
         }
       });
