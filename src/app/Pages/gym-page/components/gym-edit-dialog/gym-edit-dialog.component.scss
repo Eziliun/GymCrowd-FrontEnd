@@ -22,4 +22,25 @@
     display: flex;
     align-items: center;
   }
+
+  @media (max-width: 900px) {
+    .academia-edit-body {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .academia-edit-header {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    ::ng-deep .p-dynamic-dialog {
+        width: auto;
+        max-width: 1200px;
+    }
+  }
+
   

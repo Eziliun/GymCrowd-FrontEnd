@@ -9,3 +9,17 @@
     margin-top: 20px; 
     margin-bottom: 20px; 
 }
+
+.placeholder-container  {
+    width: 50%;
+}
+
+@media (max-width: 600px) {
+    .placeholder-container  {
+        min-width: 50%;
+        width: auto;
+    }
+    .placeholder-container-block {
+        flex-direction: column;
+    }
+}

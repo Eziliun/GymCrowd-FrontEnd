@@ -20,7 +20,7 @@ export class GymInfosComponent {
   openEditDialog() {
     this.dialogRef = this.dialogService.open(GymEditDialogComponent, {
       modal: true,
-      width: '50%',
+      width: 'auto',
       contentStyle: {'max-height': '500px', 'overflow': 'auto'},
       style: {'max-width': '600px'}
     });
