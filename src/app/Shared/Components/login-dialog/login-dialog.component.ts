@@ -4,7 +4,7 @@ import {Button} from "primeng/button";
 import {InputTextModule} from "primeng/inputtext";
 import {NgOptimizedImage} from "@angular/common";
 import {PasswordModule} from "primeng/password";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
 import {ForgotPasswordComponent} from '../forgot-password/forgot-password.component';
 import {RegisterDialogComponent} from '../register-dialog/register-dialog.component';
@@ -38,10 +38,13 @@ export class LoginDialogComponent {
   
   loginForm: FormGroup;
 
-  constructor(private dialogService: DialogService, 
+  constructor(
+    private dialogService: DialogService, 
+    private dialogRef: DynamicDialogRef,
     private fb: FormBuilder, 
     private loginService: LoginService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private router: Router
   ) {
     this.loginForm = this.fb.group({
       cnpj: ['', [Validators.required, Validators.pattern(/^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/)]],
@@ -56,6 +59,8 @@ export class LoginDialogComponent {
         next: (response:any) => {
           this.toastService.showSuccess('Operação realizada com sucesso!');
           console.log('Login com sucesso', response);
+          this.router.navigate(['/academia']);
+          this.dialogRef.close();
         },
         error: (err:any) => {
           this.toastService.showError('Ocorreu um erro no login!');
