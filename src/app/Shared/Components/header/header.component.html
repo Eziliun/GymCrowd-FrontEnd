@@ -16,7 +16,11 @@
       </ul>
   
       <div class="header-infos flex justify-content-between align-items-center h-full">
+        @if(!isAuthenticated) {
         <p-button label="Entrar" (click)="openLoginDialog()"/>
+        }@else if(isAuthenticated) {
+          <p-button label="Perfil"  icon="pi pi-user"  (click)="goToProfile()" />
+        } 
       </div>
     </nav>
     <button class="hamburger" (click)="toggleMenu()" [class.is-active]="isMenuActive">

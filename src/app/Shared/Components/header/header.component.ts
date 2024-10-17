@@ -1,9 +1,11 @@
 import { NgClass, NgIf, NgOptimizedImage } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import {ButtonModule} from 'primeng/button';
 import {DialogService, DynamicDialogRef} from "primeng/dynamicdialog";
 import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
+import { AuthService } from '../../Service/auth-service.service';
+
 
 @Component({
   selector: 'app-header',
@@ -16,13 +18,22 @@ import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
 export class HeaderComponent implements OnInit {
   isMenuActive: boolean = false;
   innerWidth: number = window.innerWidth;
-  loginDialogRef: DynamicDialogRef | undefined
+  loginDialogRef: DynamicDialogRef | undefined;
+  isAuthenticated: boolean = false;
 
-  constructor(private dialogService: DialogService) {}
+  constructor(
+    private dialogService: DialogService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    window.addEventListener('resize',() => {
-      this.innerWidth = window.innerWidth
+    window.addEventListener('resize', () => {
+      this.innerWidth = window.innerWidth;
+    });
+
+    this.authService.isAuthenticated$.subscribe(isAuth => {
+      this.isAuthenticated = isAuth;
     });
   }
 
@@ -30,12 +41,20 @@ export class HeaderComponent implements OnInit {
     this.isMenuActive = !this.isMenuActive;
   }
 
+  goToProfile(): void {
+    this.router.navigate(['/academia']);
+  }
+
   openLoginDialog() {
     this.loginDialogRef = this.dialogService.open(LoginDialogComponent, {
-      modal: true, position: 'top',
-      draggable: false, resizable: false,
-      closable: false, showHeader: false,
-      closeOnEscape: true, dismissableMask: true,
+      modal: true,
+      position: 'top',
+      draggable: false,
+      resizable: false,
+      closable: false,
+      showHeader: false,
+      closeOnEscape: true,
+      dismissableMask: true,
       style: {
         'width': 'calc(100% - 6rem)',
         'max-width': '50rem',
@@ -45,5 +64,10 @@ export class HeaderComponent implements OnInit {
       },
       contentStyle: {'padding': '2rem 4rem'},
     });
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigateByUrl('/]');  
   }
 }
