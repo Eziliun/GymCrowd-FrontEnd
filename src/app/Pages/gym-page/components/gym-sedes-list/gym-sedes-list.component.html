@@ -1,10 +1,33 @@
+
 <div class="academias-container">
     <div class="academias-list">
       @for (academia of academias; track academia.id) {
         <div class="card">
           <div class="card-header">
             <h2>{{ academia.nome }}</h2>
-            <i class="pi pi-info-circle"></i>
+            <p-button icon="pi pi-pencil"  size="small" [outlined]="true" severity="warning" (onClick)="op.toggle($event)"></p-button>
+            <p-overlayPanel #op>
+              <div class="overlay-content flex flex-column gap-3">
+                  <div class="form-group">
+                      <label for="nome">Nome da Sede</label>
+                      <input id="nome" formControlName="nome" pInputText placeholder="Digite o Nome" />
+                  </div>
+
+                  <div class="form-group">
+                      <label for="endereco">Endereço</label>
+                      <input id="endereco" formControlName="endereco" pInputText placeholder="Digite o Endereço" />
+                  </div>
+
+                  <div class="form-group">
+                      <label for="lotacaoSede">Lotação</label>
+                      <input id="lotacaoSede" formControlName="lotacao" pInputText placeholder="Digite a Lotação" />
+                  </div>
+
+                  <div class="flex justify-content-end">
+                      <p-button label="Salvar Sede" icon="pi pi-check" severity="success"  (onClick)="saveSede(academia.id)"></p-button>
+                  </div>
+              </div>
+          </p-overlayPanel>
           </div>
           <p-divider></p-divider>
           <div class="card-body">
