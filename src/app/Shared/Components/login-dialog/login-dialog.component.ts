@@ -48,7 +48,7 @@ export class LoginDialogComponent {
   ) {
     this.loginForm = this.fb.group({
       cnpj: ['', [Validators.required, Validators.pattern(/^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/)]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(0)]]
     });
   }
 
@@ -59,8 +59,16 @@ export class LoginDialogComponent {
         next: (response:any) => {
           this.toastService.showSuccess('Operação realizada com sucesso!');
           console.log('Login com sucesso', response);
-          this.router.navigate(['/academia']);
+
+          localStorage.setItem('academiaData', JSON.stringify({
+            cnpj: response.cnpj,
+            email: response.email,
+            telefone: response.telefone,
+          }));
+          
+          window.location.href = '/academia';
           this.dialogRef.close();
+
         },
         error: (err:any) => {
           this.toastService.showError('Ocorreu um erro no login!');

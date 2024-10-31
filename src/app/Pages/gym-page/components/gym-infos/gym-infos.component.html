@@ -1,35 +1,33 @@
 <div class="academia-card-header flex w-full align-items-center justify-content-between px-3">
-    <p class="academia-titulo">{{ academiaData?.nome_fantasia || 'Nome Academia' }}</p>
-    <div class="flex flex-column gap-3">
-      <p-button icon="pi pi-pencil" [rounded]="true" severity="warning" (click)="openEditDialog()"></p-button>
-      <p-button icon="pi pi-sign-out" [rounded]="true" severity="warning" (click)="logout()"></p-button>
+  <p class="academia-titulo">{{ academiaData?.nome_fantasia || 'Nome Academia' }}</p>
+  <div class="flex flex-column gap-3">
+    <p-button icon="pi pi-pencil" [rounded]="true" severity="warning" (click)="openEditDialog()"></p-button>
+    <p-button icon="pi pi-sign-out" [rounded]="true" severity="warning" (click)="logout()"></p-button>
+  </div>
+</div>
+
+<div class="placeholder-container-block flex w-full gap-7">
+  <div class="placeholder-container flex flex-column gap-3 px-3">
+    <div class="flex flex-column gap-2">
+      <label for="cnpj">CNPJ</label>
+      <input pInputText [value]="academiaData?.cnpj" readonly />
     </div>
 
-  </div>
-  
-  <div class="placeholder-container-block flex w-full gap-7">
-    <div class="placeholder-container flex flex-column gap-3 px-3">
-      <div class="flex flex-column gap-2">
-        <label for="cnpj">CNPJ</label>
-        <input pInputText [value]="academiaData?.cnpj" readonly />
-      </div>
-  
-      <div class="flex flex-column gap-2">
-        <label for="email">Email</label>
-        <input pInputText [value]="academiaData?.email" readonly />
-      </div>
-    </div>
-  
-    <div class="placeholder-container flex flex-column gap-3 px-3">
-      <div class="flex flex-column gap-2">
-        <label for="telefone">Telefone</label>
-        <input pInputText [value]="academiaData?.telefone" readonly />
-      </div>
-  
-      <div class="flex flex-column gap-2">
-        <label for="sedes">Quantidade de Sedes</label>
-        <input pInputText [value]="'Placeholder para sedes'" readonly />
-      </div>
+    <div class="flex flex-column gap-2">
+      <label for="email">Email</label>
+      <input pInputText [value]="academiaData?.email" readonly />
     </div>
   </div>
-  
+
+  <div class="placeholder-container flex flex-column gap-3 px-3">
+    <div class="flex flex-column gap-2">
+      <label for="telefone">Telefone</label>
+      <input pInputText [value]="academiaData?.telefone || 'Não informado'" readonly />
+    </div>
+
+    <div class="flex flex-column gap-2">
+      <label for="sedes">Quantidade de Sedes</label>
+      <input pInputText [value]="'Placeholder para sedes'" readonly />
+    </div>
+  </div>
+</div>
