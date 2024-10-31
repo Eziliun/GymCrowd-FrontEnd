@@ -35,20 +35,24 @@ import { ToastService } from '../../Service/Toast.service';
 export class LoginDialogComponent {
   forgotPasswordDialogRef: DynamicDialogRef | undefined;
   signUpDialogRef: DynamicDialogRef | undefined;
-  
+
   loginForm: FormGroup;
 
   constructor(
-    private dialogService: DialogService, 
+    private dialogService: DialogService,
     private dialogRef: DynamicDialogRef,
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private loginService: LoginService,
     private toastService: ToastService,
     private router: Router
   ) {
     this.loginForm = this.fb.group({
       cnpj: ['', [Validators.required, Validators.pattern(/^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/)]],
+<<<<<<< Updated upstream
       password: ['', [Validators.required, Validators.minLength(6)]]
+=======
+      password: ['', [Validators.required, Validators.minLength(0)]]
+>>>>>>> Stashed changes
     });
   }
 
@@ -59,8 +63,16 @@ export class LoginDialogComponent {
         next: (response:any) => {
           this.toastService.showSuccess('Operação realizada com sucesso!');
           console.log('Login com sucesso', response);
-          this.router.navigate(['/academia']);
+
+          localStorage.setItem('academiaData', JSON.stringify({
+            cnpj: response.cnpj,
+            email: response.email,
+            telefone: response.telefone,
+          }));
+
+          window.location.href = '/academia';
           this.dialogRef.close();
+
         },
         error: (err:any) => {
           this.toastService.showError('Ocorreu um erro no login!');
@@ -107,7 +119,7 @@ export class LoginDialogComponent {
         'max-width': '34.975rem',
         'max-height': '58.875rem',
         'margin-top': '1rem',
-      }
-    });
-  }
+      }
+    });
+  }
 }
