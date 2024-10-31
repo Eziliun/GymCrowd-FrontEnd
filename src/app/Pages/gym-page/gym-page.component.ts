@@ -18,17 +18,7 @@ export class GymPageComponent implements OnInit {
 
   constructor(private academiaService: AcademiaService) {}
 
-  ngOnInit(): void {
-    const cnpjMockado = '12345678901234'; 
+  ngOnInit(): void {
 
-    this.academiaService.getAcademia(cnpjMockado).subscribe({
-      next: (resp) => {
-        this.academiaData = resp;
-        console.log('Dados da academia:', this.academiaData);
-      },
-      error: (error) => {
-        console.error('Erro ao obter dados da academia:', error);
-      }
-    });
-  }
+}
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { DynamicDialogRef, DialogService } from 'primeng/dynamicdialog';
@@ -14,15 +14,20 @@ import { LoginService } from '../../../../Shared/Service/Login.service';
   templateUrl: './gym-infos.component.html',
   styleUrl: './gym-infos.component.scss'
 })
-export class GymInfosComponent {
+export class GymInfosComponent implements OnInit {
   @Input() academiaData: any;
   dialogRef: DynamicDialogRef | undefined;
 
   constructor(
     private dialogService: DialogService,
-    private loginService: LoginService,  
-    private router: Router  
+    private loginService: LoginService,
+    private router: Router
   ) {}
+
+  ngOnInit() {
+    const storedData = localStorage.getItem('academiaData');
+    this.academiaData = storedData ? JSON.parse(storedData) : null;
+  }
 
   openEditDialog() {
     this.dialogRef = this.dialogService.open(GymEditDialogComponent, {
@@ -34,7 +39,8 @@ export class GymInfosComponent {
   }
 
   logout() {
-    this.loginService.logout();  
-    this.router.navigate(['/login']); 
-  }
+    this.loginService.logout();
+    localStorage.removeItem('academiaData');
+    window.location.href = '/home';
+  }
 }
