@@ -48,11 +48,7 @@ export class LoginDialogComponent {
   ) {
     this.loginForm = this.fb.group({
       cnpj: ['', [Validators.required, Validators.pattern(/^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/)]],
-<<<<<<< Updated upstream
-      password: ['', [Validators.required, Validators.minLength(6)]]
-=======
       password: ['', [Validators.required, Validators.minLength(0)]]
->>>>>>> Stashed changes
     });
   }
 
