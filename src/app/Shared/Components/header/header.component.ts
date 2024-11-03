@@ -62,7 +62,7 @@ export class HeaderComponent implements OnInit {
         'height': '95%',
         'margin-top': '1rem',
       },
-      contentStyle: {'padding': '2rem 4rem'},
+      contentStyle: {'padding': '1rem 4rem'},
     });
   }
 

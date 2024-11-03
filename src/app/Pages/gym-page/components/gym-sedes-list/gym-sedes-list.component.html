@@ -5,13 +5,13 @@
     <ng-container *ngFor="let academia of academias">
       <div class="card">
         <div class="card-header">
-          <h2>{{ academia.nome }}</h2>
+          <h2>{{ academia.nome_fantasia }}</h2>
           <p-button icon="pi pi-pencil" size="small" [outlined]="true" severity="warning" (onClick)="op.toggle($event)"></p-button>
           <p-overlayPanel #op>
             <div class="overlay-content flex flex-column gap-3">
               <div class="form-group">
-                <label for="nome">Nome da Sede</label>
-                <input id="nome" formControlName="nome" pInputText placeholder="Digite o Nome" />
+                <label for="nome_fantasia">Nome da Sede</label>
+                <input id="nome_fantasia" formControlName="nome_fantasia" pInputText placeholder="Digite o Nome" />
               </div>
 
               <div class="form-group">

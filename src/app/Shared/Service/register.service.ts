@@ -13,6 +13,6 @@ export class RegisterService {
   constructor(private http: HttpClient) {}
 
   register(payload: RegisterPayload): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/register_acad`, payload);
+    return this.http.post<any>(`${this.apiUrl}/register_sede`, payload);
   }
 }

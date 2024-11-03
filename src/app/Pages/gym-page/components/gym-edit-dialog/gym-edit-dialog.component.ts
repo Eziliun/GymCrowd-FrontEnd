@@ -28,7 +28,7 @@ export class GymEditDialogComponent implements OnInit {
     });
 
     this.sedeForm = this.formBuilder.group({
-      nome: ['', Validators.required],
+      nome_fantasia: ['', Validators.required],
       endereco: ['', Validators.required],
       lotacao: [null, Validators.required]
     });

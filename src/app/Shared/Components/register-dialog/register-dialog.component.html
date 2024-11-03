@@ -19,8 +19,8 @@
     <div class="flex flex-column gap-4 w-full">
       <div class="flex flex-column w-full gap-2">
         <label>Nome da Academia <span>*</span></label>
-        <input pInputText placeholder="Digite seu nome completo" formControlName="name" id="name" />
-        <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched">Campo obrigatório</div>
+        <input pInputText placeholder="Digite seu nome completo" formControlName="nome_fantasia" id="nome_fantasia" />
+        <div *ngIf="registerForm.get('nome_fantasia')?.invalid && registerForm.get('nome_fantasia')?.touched">Campo obrigatório</div>
       </div>
       <div class="flex flex-column w-full gap-2">
         <label>Email <span>*</span></label>
@@ -36,8 +36,8 @@
       </div>
       <div class="flex flex-column w-full gap-2">
         <label>Celular <span>*</span></label>
-        <p-inputMask formControlName="phone" mask="(99)99999-9999" placeholder="Digite seu telefone" id="phone"></p-inputMask>
-        <div *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched">Campo obrigatório</div>
+        <p-inputMask formControlName="telefone" mask="(99)99999-9999" placeholder="Digite seu telefone" id="telefone"></p-inputMask>
+        <div *ngIf="registerForm.get('telefone')?.invalid && registerForm.get('telefone')?.touched">Campo obrigatório</div>
       </div>
       <div class="flex flex-column w-full gap-2">
         <label>Senha <span>*</span></label>

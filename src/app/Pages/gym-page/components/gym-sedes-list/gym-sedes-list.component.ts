@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
 export class GymSedesListComponent implements OnInit {
   sedeForm: FormGroup;
   activeOverlay: number | null = null;
-  academias: Array<{ id: number; nome: string; endereco: string; percentualOcupacao: number }> = [];
+  academias: Array<{ id: number; nome_fantasia: string; endereco: string; percentualOcupacao: number }> = [];
   noFiliaisMessage: string | null = null;
 
   constructor(
@@ -24,7 +24,7 @@ export class GymSedesListComponent implements OnInit {
     private academiaService: AcademiaService
   ) {
     this.sedeForm = this.formBuilder.group({
-      nome: ['', Validators.required],
+      nome_fantasia: ['', Validators.required],
       endereco: ['', Validators.required],
       lotacao: [null, Validators.required]
     });
@@ -40,7 +40,7 @@ export class GymSedesListComponent implements OnInit {
           if (response && response.length > 0) {
             this.academias = response.map((filial: any, index: number) => ({
               id: index + 1,
-              nome: filial.nome_fantasia || 'Nome não disponível',
+              nome_fantasia: filial.nome_fantasia_fantasia || 'nome_fantasia não disponível',
               endereco: filial.endereco || 'Endereço não disponível',
               percentualOcupacao: filial.percentualOcupacao || 0
             }));
