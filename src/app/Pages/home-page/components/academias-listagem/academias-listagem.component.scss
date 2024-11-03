@@ -45,19 +45,14 @@
 
     .card-body {
       display: flex;
-      align-items: center;
-      justify-content: space-around;
-      margin-top: 0.5rem;
-
-      span {
-        margin-left: 5px;
-      }
-
-      i {
-        color: var(--Orange-Gym);
-      }
-
-      .academia-endereço {
+      flex-direction: column;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 15px;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  
+      .card-header {
         display: flex;
         gap: 0.5rem;
       }

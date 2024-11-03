@@ -18,7 +18,7 @@ export class GymPageComponent implements OnInit {
 
   constructor(private academiaService: AcademiaService) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {
 
 }
 }

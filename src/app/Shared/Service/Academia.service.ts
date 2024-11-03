@@ -27,7 +27,7 @@ export class AcademiaService {
     return this.http.put<any>(`${this.apiUrl}/edit_sede/${cnpj}/${sedeId}`, payload);
   }
 
-  getSedes(cnpj: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/get_sedes/${cnpj}`);
+  getFilial(cnpjMatriz: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/get_filial/${cnpjMatriz}`);
   }
 }

@@ -28,7 +28,7 @@ export class GymEditDialogComponent implements OnInit {
     });
 
     this.sedeForm = this.formBuilder.group({
-      nome: ['', Validators.required],
+      nome_fantasia: ['', Validators.required],
       endereco: ['', Validators.required],
       lotacao: [null, Validators.required]
     });
@@ -58,6 +58,6 @@ export class GymEditDialogComponent implements OnInit {
     this.academiaService.addSede(this.academiaForm.value.cnpj, payload).subscribe(response => {
       console.log('Sede adicionada com sucesso', response);
       this.sedeForm.reset();
-    });
-  }
+    });
+  }
 }

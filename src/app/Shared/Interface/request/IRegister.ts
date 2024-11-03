@@ -1,7 +1,7 @@
 export interface RegisterPayload {
-    name: string;
+    nome_fantasia: string;
     email: string;
     cnpj: string;
-    phone: string;
+    telefone: string;
     password: string;
   }

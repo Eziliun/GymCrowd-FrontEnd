@@ -41,6 +41,6 @@ export class GymInfosComponent implements OnInit {
   logout() {
     this.loginService.logout();
     localStorage.removeItem('academiaData');
-    window.location.href = '/home';
-  }
+    window.location.href = '/home';
+  }
 }

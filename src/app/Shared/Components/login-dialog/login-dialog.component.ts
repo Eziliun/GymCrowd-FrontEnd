@@ -54,23 +54,25 @@ export class LoginDialogComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      const loginData: LoginPayload = this.loginForm.value;
+      const loginData: LoginPayload = { 
+        ...this.loginForm.value, 
+        cnpj: this.loginForm.value.cnpj.replace(/[\/\-,.]/g, '') 
+      };
+  
       this.loginService.login(loginData).subscribe({
-        next: (response:any) => {
+        next: (response: any) => {
           this.toastService.showSuccess('Operação realizada com sucesso!');
           console.log('Login com sucesso', response);
-
           localStorage.setItem('academiaData', JSON.stringify({
             cnpj: response.cnpj,
             email: response.email,
             telefone: response.telefone,
           }));
-
+  
           window.location.href = '/academia';
           this.dialogRef.close();
-
         },
-        error: (err:any) => {
+        error: (err: any) => {
           this.toastService.showError('Ocorreu um erro no login!');
           console.error('Erro no login', err);
         }
@@ -79,6 +81,7 @@ export class LoginDialogComponent {
       console.log('Formulário inválido');
     }
   }
+  
 
   goToForgotPassword() {
     this.forgotPasswordDialogRef = this.dialogService.open(ForgotPasswordComponent, {
@@ -106,7 +109,7 @@ export class LoginDialogComponent {
       closable: false, showHeader: false,
       closeOnEscape: true, dismissableMask: true,
       contentStyle: {
-        'padding': '2rem 3.5rem',
+        'padding': '0.5rem 3.5rem',
         'border-radius': '1rem',
         'overflow': 'hidden',
       },
