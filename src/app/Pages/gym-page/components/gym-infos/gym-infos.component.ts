@@ -20,8 +20,8 @@ export class GymInfosComponent implements OnInit {
 
   constructor(
     private dialogService: DialogService,
-    private loginService: LoginService,  
-    private router: Router  
+    private loginService: LoginService,
+    private router: Router
   ) {}
 
   ngOnInit() {
