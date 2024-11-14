@@ -64,11 +64,11 @@ export class LoginDialogComponent {
           this.toastService.showSuccess('Operação realizada com sucesso!');
           console.log('Login com sucesso', response);
           localStorage.setItem('academiaData', JSON.stringify({
+            nome_fantasia: response.nome_fantasia,
             cnpj: response.cnpj,
             email: response.email,
             telefone: response.telefone,
           }));
-  
           window.location.href = '/academia';
           this.dialogRef.close();
         },

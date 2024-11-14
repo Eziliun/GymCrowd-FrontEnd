@@ -15,19 +15,19 @@ export class AcademiaService {
     return this.http.get<any>(`${this.apiUrl}/get_acad/${cnpj}`);
   }
 
-  editAcademia(cnpj: string, payload: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/update_acad/${cnpj}`, payload);
+  editSede(cnpj: string, payload: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/update_sede/${cnpj}`, payload);
   }
 
-  addSede(cnpj: string, payload: any): Observable<any> {
+  addFilial(cnpj: string, payload: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/add_sede/${cnpj}`, payload);
   }
   
-  editSede(cnpj: string, sedeId: number, payload: any): Observable<any> {
+  editFilial(cnpj: string, sedeId: number, payload: any): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/edit_sede/${cnpj}/${sedeId}`, payload);
   }
 
   getFilial(cnpjMatriz: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/get_filial/${cnpjMatriz}`);
+    return this.http.get<any>(`${this.apiUrl}/get_all_filiais/${cnpjMatriz}`);
   }
 }

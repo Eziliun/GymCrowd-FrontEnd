@@ -32,15 +32,15 @@ export class GymSedesListComponent implements OnInit {
 
   ngOnInit(): void {
     const academiaData = JSON.parse(localStorage.getItem('academiaData') || '{}');
-    const cnpj = academiaData.cnpj;
-
+    const cnpj = academiaData?.cnpj;
+  
     if (cnpj) {
       this.academiaService.getFilial(cnpj).subscribe(
         (response) => {
           if (response && response.length > 0) {
             this.academias = response.map((filial: any, index: number) => ({
               id: index + 1,
-              nome_fantasia: filial.nome_fantasia_fantasia || 'nome_fantasia não disponível',
+              nome_fantasia: filial.nome_fantasia || 'Nome fantasia não disponível',
               endereco: filial.endereco || 'Endereço não disponível',
               percentualOcupacao: filial.percentualOcupacao || 0
             }));
@@ -57,6 +57,7 @@ export class GymSedesListComponent implements OnInit {
       this.noFiliaisMessage = 'CNPJ da academia não encontrado no localStorage';
     }
   }
+  
 
   toggleOverlay(id: number): void {
     this.activeOverlay = this.activeOverlay === id ? null : id;
@@ -71,7 +72,7 @@ export class GymSedesListComponent implements OnInit {
     const cnpj = JSON.parse(localStorage.getItem('academiaData') || '{}').cnpj;
 
     if (cnpj) {
-      this.academiaService.editSede(cnpj, academiaId, payload).subscribe(
+      this.academiaService.editFilial(cnpj, academiaId, payload).subscribe(
         (response) => {
           console.log('Sede editada com sucesso', response);
           this.sedeForm.reset();
