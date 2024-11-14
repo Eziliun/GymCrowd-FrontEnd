@@ -9,7 +9,7 @@ import { AcademiaService } from '../../Shared/Service/Academia.service';
 @Component({
   selector: 'app-gym-page',
   standalone: true,
-  imports: [GymInfosComponent, GymSedesListComponent, HeaderComponent],
+  imports: [GymInfosComponent, GymSedesListComponent],
   templateUrl: './gym-page.component.html',
   styleUrl: './gym-page.component.scss'
 })
@@ -18,7 +18,7 @@ export class GymPageComponent implements OnInit {
 
   constructor(private academiaService: AcademiaService) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {
 
 }
 }

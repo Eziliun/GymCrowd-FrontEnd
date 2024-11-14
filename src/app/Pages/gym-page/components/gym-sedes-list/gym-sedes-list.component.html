@@ -1,11 +1,9 @@
 <div class="academias-container">
   <div *ngIf="noFiliaisMessage" class="no-filiais-message">{{ noFiliaisMessage }}</div>
-
   <div class="academias-list">
     <div class="add-academia-button">
       <p-button label="Adicionar Academia" icon="pi pi-plus" severity="warning"  (click)="openDialog()"></p-button>
     </div>
-
     <ng-container *ngFor="let academia of academias">
       <div class="card">
         <div class="card-header">
@@ -49,7 +47,6 @@
     </ng-container>
   </div>
 </div>
-
 
 <p-dialog header="Adicionar Academia" [(visible)]="displayDialog" [modal]="true" [responsive]="true" [style]="{width: '50vw'}">
   <form [formGroup]="sedeForm">

@@ -10,30 +10,18 @@ a.forgot-password {
   color: var(--Orange-Gym);
 }
 
-.dialog img {
-  width: 13.75rem;
-  height: auto;
-}
+    .p-dialog-content {
+      width: 30rem;
+    }
+  
+    .p-dialog .p-dialog-content:last-of-type {
+      border-radius: 1rem;
+    }
 
-hr {
-  width: 100%;
-  margin: 1rem 0;
-}
-
-label span {
-  color: rgba(255, 0, 0, .75);
-}
-
-::ng-deep {
-
-  .p-dialog-content {
-    width: 30rem;
-  }
 
   .p-dialog .p-dialog-content:last-of-type {
     border-radius: 1rem;
   }
-}
 
 ::ng-deep {
   .p-button:hover {

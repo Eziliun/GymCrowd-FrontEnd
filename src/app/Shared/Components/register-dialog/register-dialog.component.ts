@@ -38,11 +38,11 @@ export class RegisterDialogComponent {
     private toastService: ToastService,
   ) {
     this.registerForm = this.fb.group({
-      name: ['', Validators.required],
+      nome_fantasia: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       cnpj: ['', Validators.required],
-      phone: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      telefone: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(0)]],
       confirmPassword: ['', Validators.required]
     }, { validator: this.passwordMatchValidator });
   }
@@ -59,7 +59,16 @@ export class RegisterDialogComponent {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      const payload = this.registerForm.value;
+      const cleanedCNPJ = this.registerForm.get('cnpj')?.value.replace(/[^\d]/g, '');
+      const cleanedTelefone = this.registerForm.get('telefone')?.value.replace(/[^\d]/g, '');
+  
+      const { confirmPassword, ...formValues } = this.registerForm.value;
+      const payload = {
+        ...formValues,
+        cnpj: cleanedCNPJ,
+        telefone: cleanedTelefone,
+      };
+  
       this.registerService.register(payload).subscribe({
         next: (response: any) => {
           this.toastService.showSuccess('Operação realizada com sucesso!');
@@ -75,4 +84,6 @@ export class RegisterDialogComponent {
       console.log('Form is invalid');
     }
   }
+  
+  
 }

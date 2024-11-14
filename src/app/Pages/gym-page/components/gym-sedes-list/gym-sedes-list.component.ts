@@ -8,10 +8,12 @@ import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 
+
 @Component({
   selector: 'app-gym-sedes-list',
   standalone: true,
   imports: [DividerModule, ButtonModule, OverlayPanelModule, CommonModule, DialogModule, ReactiveFormsModule, InputTextModule],
+
   templateUrl: './gym-sedes-list.component.html',
   styleUrls: ['./gym-sedes-list.component.scss']
 })
@@ -37,7 +39,6 @@ export class GymSedesListComponent implements OnInit {
   ngOnInit(): void {
     const academiaData = JSON.parse(localStorage.getItem('academiaData') || '{}');
     const cnpj = academiaData?.cnpj;
-
     if (cnpj) {
       this.academiaService.getFilial(cnpj).subscribe(
         (response) => {
@@ -55,6 +56,7 @@ export class GymSedesListComponent implements OnInit {
         (error) => {
           console.error('Erro ao buscar filiais:', error);
           this.noFiliaisMessage = 'Sem Filiais';
+
         }
       );
     } else {
@@ -66,6 +68,7 @@ export class GymSedesListComponent implements OnInit {
     this.sedeForm.reset();
     this.displayDialog = true;
   }
+
 
   toggleOverlay(id: number): void {
     this.activeOverlay = this.activeOverlay === id ? null : id;
@@ -92,4 +95,5 @@ export class GymSedesListComponent implements OnInit {
     );
   }
   
+
 }
