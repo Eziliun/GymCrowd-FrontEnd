@@ -1,5 +1,5 @@
 <div class="academia-card-header flex w-full align-items-center justify-content-between px-3">
-  <p class="academia-titulo">{{ academiaData?.nome_fantasia_fantasia || 'Nome Academia' }}</p>
+  <p class="academia-titulo" >{{ academiaData?.nome_fantasia }}</p>
   <div class="flex flex-column gap-3">
     <p-button icon="pi pi-pencil" [rounded]="true" severity="warning" (click)="openEditDialog()"></p-button>
     <p-button icon="pi pi-sign-out" [rounded]="true" severity="warning" (click)="logout()"></p-button>

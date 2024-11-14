@@ -1,53 +1,28 @@
-<div class="academia-edit-container flex flex-column gap-4">
-  <div class="academia-edit-header flex justify-content-between align-items-center gap-3">
+<div class="academia-edit-container flex flex-column gap-4" [formGroup]="sedeForm">
+    <div class="academia-edit-header flex justify-content-between align-items-center gap-3">
       <h2>Editar Informações da Academia</h2>
-      <p-button icon="pi pi-save" label="Salvar" (onClick)="saveAcademia()" severity="success"></p-button>
-  </div>
-
-  <div class="academia-edit-body justify-content-around align-items-center flex gap-4">
+      <p-button icon="pi pi-save" label="Salvar" (onClick)="updateSede()" severity="success"></p-button>
+    </div>
+  
+    <div class="academia-edit-body justify-content-around align-items-center flex gap-4">
       <div class="academia-edit-form flex flex-column gap-3">
-          <div class="form-group">
-              <label for="cnpj">CNPJ</label>
-              <input id="cnpj" formControlName="cnpj" pInputText placeholder="Digite o CNPJ" />
-          </div>
-
-          <div class="form-group">
-              <label for="email">Email</label>
-              <input id="email" formControlName="email" pInputText placeholder="Digite o Email" />
-          </div>
-
-          <div class="form-group">
-              <label for="lotacao">Lotação Média</label>
-              <input id="lotacao" formControlName="lotacaoMedia" pInputText placeholder="Digite a Lotação Média" />
-          </div>
+        
+        <div class="form-group">
+          <label for="nome_fantasia">Nome</label>
+          <input id="nome_fantasia" formControlName="nome_fantasia" pInputText placeholder="Digite o Nome" />
+        </div>
+  
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" formControlName="email" pInputText placeholder="Digite o Email" />
+        </div>
+  
+        <div class="form-group">
+          <label for="telefone">Telefone</label>
+          <p-inputMask formControlName="telefone" mask="(99)99999-9999" placeholder="Digite seu telefone" id="telefone"></p-inputMask>
+        </div>
+  
       </div>
-
-      <div class="academia-sedes-container flex align-items-center flex-column gap-3">
-          <label for="sedes">Quantidade de Sedes:</label>
-          <p id="sedes">{{ quantidadeSedes }}</p>
-          <p-button icon="pi pi-plus" label="Adicionar" (onClick)="op.toggle($event)"></p-button>
-          <p-overlayPanel #op>
-              <div class="overlay-content flex flex-column gap-3">
-                  <div class="form-group">
-                      <label for="nome_fantasia">Nome da Sede</label>
-                      <input id="nome_fantasia" formControlName="nome_fantasia" pInputText placeholder="Digite o nome_fantasia" />
-                  </div>
-
-                  <div class="form-group">
-                      <label for="endereco">Endereço</label>
-                      <input id="endereco" formControlName="endereco" pInputText placeholder="Digite o Endereço" />
-                  </div>
-
-                  <div class="form-group">
-                      <label for="lotacaoSede">Lotação</label>
-                      <input id="lotacaoSede" formControlName="lotacao" pInputText placeholder="Digite a Lotação" />
-                  </div>
-
-                  <div class="flex justify-content-end">
-                      <p-button label="Salvar Sede" icon="pi pi-check" (onClick)="addSede()" severity="success"></p-button>
-                  </div>
-              </div>
-          </p-overlayPanel>
-      </div>
+    </div>
   </div>
-</div>
+  
