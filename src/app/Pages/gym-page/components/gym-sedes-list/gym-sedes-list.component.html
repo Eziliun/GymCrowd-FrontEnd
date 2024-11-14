@@ -1,46 +1,77 @@
-
 <div class="academias-container">
-    <div class="academias-list">
-      @for (academia of academias; track academia.id) {
-        <div class="card">
-          <div class="card-header">
-            <h2>{{ academia.nome }}</h2>
-            <p-button icon="pi pi-pencil"  size="small" [outlined]="true" severity="warning" (onClick)="op.toggle($event)"></p-button>
-            <p-overlayPanel #op>
-              <div class="overlay-content flex flex-column gap-3">
-                  <div class="form-group">
-                      <label for="nome">Nome da Sede</label>
-                      <input id="nome" formControlName="nome" pInputText placeholder="Digite o Nome" />
-                  </div>
+  <div *ngIf="noFiliaisMessage" class="no-filiais-message">{{ noFiliaisMessage }}</div>
 
-                  <div class="form-group">
-                      <label for="endereco">Endereço</label>
-                      <input id="endereco" formControlName="endereco" pInputText placeholder="Digite o Endereço" />
-                  </div>
+  <div class="academias-list">
+    <div class="add-academia-button">
+      <p-button label="Adicionar Academia" icon="pi pi-plus" severity="warning"  (click)="openDialog()"></p-button>
+    </div>
 
-                  <div class="form-group">
-                      <label for="lotacaoSede">Lotação</label>
-                      <input id="lotacaoSede" formControlName="lotacao" pInputText placeholder="Digite a Lotação" />
-                  </div>
-
-                  <div class="flex justify-content-end">
-                      <p-button label="Salvar Sede" icon="pi pi-check" severity="success"  (onClick)="saveSede(academia.id)"></p-button>
-                  </div>
+    <ng-container *ngFor="let academia of academias">
+      <div class="card">
+        <div class="card-header">
+          <h2>{{ academia.nome_fantasia }}</h2>
+          <p-button icon="pi pi-pencil" size="small" [outlined]="true" severity="warning" (onClick)="op.toggle($event)"></p-button>
+          <p-overlayPanel #op>
+            <div class="overlay-content flex flex-column gap-3">
+              <div class="form-group">
+                <label for="nome_fantasia">Nome da Sede</label>
+                <input id="nome_fantasia" formControlName="nome_fantasia" pInputText placeholder="Digite o Nome" />
               </div>
+
+              <div class="form-group">
+                <label for="endereco">Endereço</label>
+                <input id="endereco" formControlName="endereco" pInputText placeholder="Digite o Endereço" />
+              </div>
+
+              <div class="form-group">
+                <label for="lotacaoSede">Lotação</label>
+                <input id="lotacaoSede" formControlName="lotacao" pInputText placeholder="Digite a Lotação" />
+              </div>
+
+              <div class="flex justify-content-end">
+                <p-button label="Salvar Sede" icon="pi pi-check" severity="success"></p-button>
+              </div>
+            </div>
           </p-overlayPanel>
+        </div>
+        <p-divider></p-divider>
+        <div class="card-body">
+          <div class="academia-endereco">
+            <i class="pi pi-map-marker"></i>
+            <span>{{ academia.endereco }}</span>
           </div>
-          <p-divider></p-divider>
-          <div class="card-body">
-            <div class="academia-endereço">
-              <i class="pi pi-map-marker"></i>
-              <span>{{ academia.endereco }}</span>
-            </div>
-            <div class="academia-lotacao">
-              <i class="pi pi-users"></i>
-              <span>{{ academia.percentualOcupacao }}%</span>
-            </div>
+          <div class="academia-lotacao">
+            <i class="pi pi-users"></i>
+            <span>{{ academia.percentualOcupacao }}%</span>
           </div>
         </div>
-      }
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+
+<p-dialog header="Adicionar Academia" [(visible)]="displayDialog" [modal]="true" [responsive]="true" [style]="{width: '50vw'}">
+  <form [formGroup]="sedeForm">
+    <div class="overlay-content flex flex-column gap-3">
+    <div class="form-group flex gap-3">
+      <label for="nome_fantasia">Nome da Sede</label>
+      <input id="nome_fantasia" formControlName="nome_fantasia" pInputText placeholder="Digite o Nome" />
+    </div>
+
+    <div class="form-group flex gap-3">
+      <label for="endereco">Endereço</label>
+      <input id="endereco" formControlName="endereco" pInputText placeholder="Digite o Endereço" />
+    </div>
+
+    <div class="form-group flex gap-3">
+      <label for="lotacaoSede">Lotação</label>
+      <input id="lotacaoSede" formControlName="lotacao" pInputText placeholder="Digite a Lotação" />
     </div>
   </div>
+
+    <div class="flex justify-content-end">
+      <p-button label="Salvar Sede" icon="pi pi-check" severity="success" (onClick)="saveSede()"></p-button>
+    </div>
+  </form>
+</p-dialog>

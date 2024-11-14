@@ -1,90 +1,98 @@
-
 .academias-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 5rem;
+  position: relative;
+
+  h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+
+  .academias-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+    gap: 20px;
+    width: 100%;
+    padding: 10px;
+  }
+
+  .card {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100%;
-  
-    h1 {
-      margin-bottom: 20px;
-      font-size: 24px;
-    }
-  
-    .academias-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
-      gap: 20px;
-      width: 100%;
-      padding: 10px;
-    }
-  
-    .card {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      border: 1px solid #e0e0e0;
-      border-radius: 10px;
-      padding: 15px;
-      background-color: #fff;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  
-      .card-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 10px;
-  
-        h2 {
-          font-size: 20px;
-          margin: 0;
-        }
-  
-        i {
-          font-size: 18px;
-          color: var(--Orange-Gym);
-        }
-      }
-  
-      .card-body {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        margin-top: 0.5rem;
-  
-        span {
-          margin-left: 5px;
-        }
-  
-        i {
-          color: var(--Orange-Gym);
-        }
+    gap: 0.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
-        .academia-endereço {
-          display: flex;
-          gap: 0.5rem;
-        }
-        .academia-lotacao {
-          display: flex;
-          gap: 0.5rem;
-        }
-      }
-    }
-  }
-
-  @media (max-width: 1250px) {
-    .academias-list {
-      max-height: 270px !important;
-    }
-  }
-
-  @media (max-width: 445px) {
     .card-header {
-      justify-content: normal !important;
-      gap: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+
+      h2 {
+        font-size: 20px;
+        margin: 0;
+      }
+
+      i {
+        font-size: 18px;
+        color: var(--Orange-Gym);
+      }
     }
+
     .card-body {
-      flex-direction: column;
-      align-items: start !important;
-      gap: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      margin-top: 0.5rem;
+
+      span {
+        margin-left: 5px;
+      }
+
+      i {
+        color: var(--Orange-Gym);
+      }
+
+      .academia-endereco {
+        display: flex;
+        gap: 0.5rem;
+      }
+      .academia-lotacao {
+        display: flex;
+        gap: 0.5rem;
+      }
     }
   }
+
+  .add-academia-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+}
+
+@media (max-width: 1250px) {
+  .academias-list {
+    max-height: 270px !important;
+  }
+}
+
+@media (max-width: 445px) {
+  .card-header {
+    justify-content: normal !important;
+    gap: 0.8rem;
+  }
+  .card-body {
+    flex-direction: column;
+    align-items: start !important;
+    gap: 0.5rem;
+}
+}
+
