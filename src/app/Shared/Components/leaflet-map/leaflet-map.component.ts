@@ -1,3 +1,4 @@
+
 import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
 
@@ -9,11 +10,12 @@ import * as L from 'leaflet';
   styleUrl: './leaflet-map.component.scss'
 })
 export class LeafletMapComponent implements AfterViewInit {
-  private map:any;
+  private map: L.Map | undefined;
+  private userMarker: L.Marker | undefined;
 
   private initMap(): void {
     this.map = L.map('map', {
-      center: [-3.737454, -38.5393108], 
+      center: [-3.737454, -38.5393108],
       zoom: 13
     });
 
@@ -26,9 +28,30 @@ export class LeafletMapComponent implements AfterViewInit {
     tiles.addTo(this.map);
   }
 
+  private locateUser(): void {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+
+          this.userMarker = L.marker([latitude, longitude]).addTo(this.map!);
+          this.userMarker.bindPopup('Você está aqui!').openPopup();
+
+          this.map?.setView([latitude, longitude], 15);
+        },
+        (error) => {
+          console.error("Erro ao obter a localização do usuário:", error);
+        }
+      );
+    } else {
+      console.warn("Geolocalização não é suportada por este navegador.");
+    }
+  }
+
   constructor() { }
 
   ngAfterViewInit(): void {
     this.initMap();
+    this.locateUser();
   }
 }

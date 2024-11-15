@@ -1,23 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { AcademiaService } from '../../../../Shared/Service/Academia.service';
 import { DividerModule } from 'primeng/divider';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-academias-listagem',
   standalone: true,
-  imports: [DividerModule],
+  imports: [DividerModule, CommonModule],
   templateUrl: './academias-listagem.component.html',
   styleUrl: './academias-listagem.component.scss'
 })
-export class AcademiasListagemComponent {
-  academias = [
-    { id: 1, nome_fantasia: 'Academia One', endereco: 'Rua A, 123', percentualOcupacao: 80 },
-    { id: 2, nome_fantasia: 'Academia Fit', endereco: 'Rua B, 456', percentualOcupacao: 65 },
-    { id: 3, nome_fantasia: 'Academia Fit', endereco: 'Rua B, 456', percentualOcupacao: 65 },
-    { id: 4, nome_fantasia: 'Academia Fit', endereco: 'Rua B, 456', percentualOcupacao: 65 },
-    { id: 5, nome_fantasia: 'Academia Fit', endereco: 'Rua B, 456', percentualOcupacao: 65 },
-    { id: 6, nome_fantasia: 'Academia Fit', endereco: 'Rua B, 456', percentualOcupacao: 65 },
-    { id: 7, nome_fantasia: 'Academia Fit', endereco: 'Rua B, 456', percentualOcupacao: 65 },
-    { id: 8, nome_fantasia: 'Academia Fit', endereco: 'Rua B, 456', percentualOcupacao: 65 },
-    { id: 9, nome_fantasia: 'Academia Power', endereco: 'Rua C, 789', percentualOcupacao: 90 }
-  ];
+export class AcademiasListagemComponent implements OnInit {
+  academias: any[] = [];
+
+  constructor(private http: HttpClient, private academiaService: AcademiaService) { }
+
+  ngOnInit(): void {
+    const cnpj = JSON.parse(localStorage.getItem('academiaData') || '{}').cnpj;
+
+    if (cnpj) {
+      this.academiaService.getFilial(cnpj).subscribe(
+        (data) => {
+          this.academias = data;
+        },
+        (error) => {
+          console.error('Erro ao buscar academias:', error);
+        }
+      );
+    } else {
+      console.warn('CNPJ não encontrado no local storage.');
+    }
+  }
 }

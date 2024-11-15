@@ -1,25 +1,37 @@
 <div class="academias-container">
-    <h1>Academias</h1>
-    <div class="academias-list" style="overflow-y: auto; max-height: 400px;">
-      @for (academia of academias; track academia.id) {
-        <div class="card">
-          <div class="card-header">
-            <h2>{{ academia.nome_fantasia }}</h2>
-            <i class="pi pi-info-circle"></i>
+  <h1>Academias</h1>
+  <div class="academias-list" style="overflow-y: auto; max-height: 400px;">
+    <ng-container *ngIf="academias && academias.length > 0; else noAcademias">
+      <div *ngFor="let academia of academias" class="card">
+        <div class="card-header">
+          <h2>{{ academia.nome_fantasia }}</h2>
+          <i class="pi pi-info-circle"></i>
+        </div>
+        <p-divider></p-divider>
+        <div class="card-body">
+          <div class="academia-endereco">
+            <i class="pi pi-map-marker"></i>
+            <span>{{ academia.endereco }}</span>
           </div>
-          <p-divider></p-divider>
-          <div class="card-body">
-            <div class="academia-endereço">
-              <i class="pi pi-map-marker"></i>
-              <span>{{ academia.endereco }}</span>
-            </div>
-            <div class="academia-lotacao">
-              <i class="pi pi-users"></i>
-              <span>{{ academia.percentualOcupacao }}%</span>
-            </div>
+          <div class="academia-lotacao">
+            <i class="pi pi-users"></i>
+            <span>{{ academia.percentualOcupacao }}%</span>
           </div>
         </div>
-      }
-    </div>
+      </div>
+    </ng-container>
+
+    <ng-template #noAcademias>
+      <div class="card empty-card">
+        <div class="card-header">
+          <h2>Nenhuma academia disponível</h2>
+          <i class="pi pi-info-circle"></i>
+        </div>
+        <p-divider></p-divider>
+        <div class="card-body">
+          <p>Atualmente, não há academias registradas para exibição.</p>
+        </div>
+      </div>
+    </ng-template>
   </div>
-  
+</div>
