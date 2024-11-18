@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { AcademiaService } from '../../../../Shared/Service/Academia.service';
 import { CommonModule } from '@angular/common';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-gym-sedes-list',
   standalone: true,
-  imports: [DividerModule, ButtonModule, OverlayPanelModule, CommonModule],
+  imports: [DividerModule, ButtonModule, OverlayPanelModule, CommonModule, DialogModule, ReactiveFormsModule, InputTextModule],
   templateUrl: './gym-sedes-list.component.html',
   styleUrls: ['./gym-sedes-list.component.scss']
 })
@@ -18,6 +20,8 @@ export class GymSedesListComponent implements OnInit {
   activeOverlay: number | null = null;
   academias: Array<{ id: number; nome_fantasia: string; endereco: string; percentualOcupacao: number }> = [];
   noFiliaisMessage: string | null = null;
+  displayDialog: boolean = false;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,7 +30,7 @@ export class GymSedesListComponent implements OnInit {
     this.sedeForm = this.formBuilder.group({
       nome_fantasia: ['', Validators.required],
       endereco: ['', Validators.required],
-      lotacao: [null, Validators.required]
+      lotacao: ['', Validators.required]
     });
   }
 
@@ -50,7 +54,7 @@ export class GymSedesListComponent implements OnInit {
         },
         (error) => {
           console.error('Erro ao buscar filiais:', error);
-          this.noFiliaisMessage = 'Erro ao buscar filiais';
+          this.noFiliaisMessage = 'Sem Filiais';
         }
       );
     } else {
@@ -58,30 +62,34 @@ export class GymSedesListComponent implements OnInit {
     }
   }
   
+  openDialog(): void {
+    this.sedeForm.reset(); 
+    this.displayDialog = true; 
+  }
 
   toggleOverlay(id: number): void {
     this.activeOverlay = this.activeOverlay === id ? null : id;
   }
 
-  saveSede(academiaId: number): void {
+  saveSede(): void {
     if (this.sedeForm.invalid) {
+      console.log("ta errado")
+      console.log(this.sedeForm.value)
       return;
     }
-
+  
     const payload = this.sedeForm.value;
-    const cnpj = JSON.parse(localStorage.getItem('academiaData') || '{}').cnpj;
-
-    if (cnpj) {
-      this.academiaService.editFilial(cnpj, academiaId, payload).subscribe(
-        (response) => {
-          console.log('Sede editada com sucesso', response);
-          this.sedeForm.reset();
-          this.activeOverlay = null;
-        },
-        (error) => {
-          console.error('Erro ao editar sede', error);
-        }
-      );
-    }
+    this.academiaService.addFilial(payload).subscribe(
+      (response) => {
+        console.log('Sede adicionada com sucesso', response);
+        this.sedeForm.reset();
+        this.displayDialog = false;
+        this.activeOverlay = null;
+      },
+      (error) => {
+        console.error('Erro ao adicionar sede', error);
+      }
+    );
   }
+  
 }

@@ -19,9 +19,12 @@ export class AcademiaService {
     return this.http.put<any>(`${this.apiUrl}/update_sede/${cnpj}`, payload);
   }
 
-  addFilial(cnpj: string, payload: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/add_sede/${cnpj}`, payload);
+  addFilial(payload: any): Observable<any> {
+    const cnpj = JSON.parse(localStorage.getItem('academiaData') || '{}').cnpj;
+    const fullPayload = { cnpj_matriz: cnpj, ...payload };
+    return this.http.post<any>(`${this.apiUrl}/register_filial`, fullPayload);
   }
+  
   
   editFilial(cnpj: string, sedeId: number, payload: any): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/edit_sede/${cnpj}/${sedeId}`, payload);
