@@ -16,6 +16,7 @@ import { LoginService } from '../../../../Shared/Service/Login.service';
 })
 export class GymInfosComponent implements OnInit {
   @Input() academiaData: any;
+  @Input() totalSedes: number = 0;
   dialogRef: DynamicDialogRef | undefined;
 
   constructor(
@@ -26,7 +27,7 @@ export class GymInfosComponent implements OnInit {
 
   ngOnInit() {
     const storedData = localStorage.getItem('academiaData');
-    this.academiaData = storedData ? JSON.parse(storedData) : null;
+    this.academiaData = storedData ? JSON.parse(storedData) : null;    
   }
 
   openEditDialog() {

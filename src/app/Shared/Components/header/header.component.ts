@@ -10,7 +10,7 @@ import { AuthService } from '../../Service/auth-service.service';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, NgClass, NgIf, NgOptimizedImage, ButtonModule],
+  imports: [RouterLink, RouterLinkActive, NgClass, NgOptimizedImage, ButtonModule],
   providers: [DialogService],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
@@ -51,7 +51,7 @@ export class HeaderComponent implements OnInit {
       position: 'top',
       draggable: false,
       resizable: false,
-      closable: false,
+      closable: true,
       showHeader: false,
       closeOnEscape: true,
       dismissableMask: true,

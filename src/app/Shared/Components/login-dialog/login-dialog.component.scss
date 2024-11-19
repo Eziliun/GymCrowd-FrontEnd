@@ -5,6 +5,12 @@ h2 {
   text-align: center;
 }
 
+.form-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
 a.forgot-password {
   font-size: 0.875rem;
   color: var(--Orange-Gym);

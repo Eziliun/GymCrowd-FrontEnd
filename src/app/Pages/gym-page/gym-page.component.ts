@@ -15,6 +15,7 @@ import { AcademiaService } from '../../Shared/Service/Academia.service';
 })
 export class GymPageComponent implements OnInit {
   academiaData: any;
+  totalSedes: number = 0;
 
   constructor(private academiaService: AcademiaService) {}
 
