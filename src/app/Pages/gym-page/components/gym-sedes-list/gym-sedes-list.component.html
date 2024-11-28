@@ -3,22 +3,25 @@
 
   <div class="academias-list" *ngIf="academias.length > 0">
     <div *ngFor="let academia of academias" class="card">
-      <div class="card-header">
+      <div class="card-header flex-column">
         <h2>{{ academia.nome_fantasia }}</h2>
-        <p-button 
-        icon="pi pi-pencil" 
-        [rounded]="true" 
-        [text]="true" 
-        severity="success" 
-        (click)="editFilial(academia)">
-      </p-button>
-        <p-button 
-        icon="pi pi-trash" 
-        [rounded]="true" 
-        [text]="true" 
-        severity="danger" 
-        (click)="deleteFilial(academia.nome_fantasia)">
-      </p-button>
+        <div class="flex">
+          <p-button 
+          icon="pi pi-pencil" 
+          [rounded]="true" 
+          [text]="true" 
+          severity="success" 
+          (click)="editFilial(academia)">
+        </p-button>
+          <p-button 
+          icon="pi pi-trash" 
+          [rounded]="true" 
+          [text]="true" 
+          severity="danger" 
+          (click)="deleteFilial(academia.nome_fantasia)">
+        </p-button>
+        </div>
+
       </div>
       <div class="card-body">
         <div class="academia-endereco">

@@ -5,16 +5,20 @@
       <div *ngFor="let academia of academias" class="card">
         <div class="card-header">
           <h2>{{ academia.nome_fantasia }}</h2>
-          <i class="pi pi-info-circle"></i>
+          <i 
+            class="pi pi-info-circle" 
+            style="cursor: pointer;" 
+            (click)="openDialog(academia)"
+          ></i>
         </div>
         <p-divider></p-divider>
         <div class="card-body">
-          <div class="academia-endereco">
-            <i class="pi pi-map-marker"></i>
+          <div class="academia-endereco flex gap-2">
+            <i class="pi pi-map-marker" style="color: #ff6000"></i>
             <span>{{ academia.endereco }}</span>
           </div>
           <div class="academia-lotacao">
-            <i class="pi pi-users"></i>
+            <i class="pi pi-users" style="color: #ff6000"></i>
             <span>{{ academia.lotacao }}%</span>
           </div>
         </div>
@@ -34,4 +38,15 @@
       </div>
     </ng-template>
   </div>
+
+  <!-- Dialog para o gráfico -->
+  <p-dialog 
+    [(visible)]="displayDialog" 
+    header="Gráfico de Lotação" 
+    [modal]="true" 
+    [style]="{ width: '50vw' }" 
+    [responsive]="true"
+    (onHide)="closeDialog()">
+    <canvas #chartCanvas></canvas>
+  </p-dialog>
 </div>

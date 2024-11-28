@@ -62,8 +62,8 @@ export class LeafletMapComponent implements AfterViewInit, OnInit {
   private loadAcademias(): void {
     this.academiaService.getAllAcads().subscribe({
       next: (academias: any[]) => {
-        academias.forEach((academia: { latitude: number; longitude: number; nome_fantasia: string; endereco: string; }) => {
-          this.addAcademiaMarker(academia.latitude, academia.longitude, academia.nome_fantasia, academia.endereco);
+        academias.forEach((academia: { latitude: number; longitude: number; nome_fantasia: string; endereco: string; lotacao: number }) => {
+          this.addAcademiaMarker(academia.latitude, academia.longitude, academia.nome_fantasia, academia.endereco, academia.lotacao);
         });
       },
       error: (error: any) => {
@@ -72,7 +72,7 @@ export class LeafletMapComponent implements AfterViewInit, OnInit {
     });
   }
 
-  private addAcademiaMarker(lat: number, lng: number, nome: string, endereco: string): void {
+  private addAcademiaMarker(lat: number, lng: number, nome: string, endereco: string, lotacao: number): void {
     if (this.map) {
       const customIcon = L.icon({
         iconUrl: 'assets/pngtree-colorful-map-marker-icon-isolated-on-white-background-eps-10-picture-image_8048922.png',
@@ -82,8 +82,27 @@ export class LeafletMapComponent implements AfterViewInit, OnInit {
       });
   
       const marker = L.marker([lat, lng], { icon: customIcon }).addTo(this.map);
-      marker.bindPopup(`<b>${nome}</b><br>${endereco}`);
+  
+      const popupContent = `
+        <div style="font-family: Arial, sans-serif; font-size: 14px; color: #333;">
+          <h3 style="margin: 0; font-size: 16px; color: #000000;">${nome}</h3>
+          <p style="margin: 5px 0;">📍 <strong>Endereço:</strong> ${endereco}</p>
+          <p style="margin: 5px 0;">👥 <strong>Lotação:</strong> ${lotacao}%</p>
+            Mais Detalhes
+          </button>
+        </div>
+      `;
+  
+      marker.bindPopup(popupContent);
+  
+      marker.on('click', () => {
+        this.map?.flyTo([lat, lng], 18, {
+          animate: true,
+          duration: 1.5
+        });
+      });
     }
   }
+  
   
 }

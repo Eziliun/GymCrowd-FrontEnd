@@ -32,3 +32,30 @@
     width: 800px !important;
   }
 }
+
+
+.leaflet-popup-content {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+
+.leaflet-popup-content h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #007BFF;
+}
+
+.leaflet-popup-content button {
+  padding: 5px 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.leaflet-popup-content button:hover {
+  background-color: #0056b3;
+}
